@@ -1,0 +1,224 @@
+--- a/test/mobile-ui.test.ts
++++ b/test/mobile-ui.test.ts
+@@ -225,7 +225,7 @@
+     await fresh();
+     await tap(row(first));
+     await reach({ path: `/s/${first}` }, "the session");
+-    await tap('.topbar [aria-label="Files"]');
++    await tap('.topbar [aria-label="文件"]');
+     await reach({ files: true, layers: 1 }, "the Files tile");
+     await tap('.ft-row[data-path$="/README.md"]');
+     await reach({ file: "README.md", layers: 2 }, "the file, over the tree");
+@@ -241,7 +241,7 @@
+ test("a reload keeps the steps back: the file, then the tile", real, async () => {
+     await fresh();
+     await tap(row(first));
+-    await tap('.topbar [aria-label="Files"]');
++    await tap('.topbar [aria-label="文件"]');
+     await tap('.ft-row[data-path$="/README.md"]');
+     await reach({ file: "README.md", layers: 2 }, "the file");
+     await page.reload({ wait: true });
+@@ -258,7 +258,7 @@
+ test("a sheet the menu opened goes back to the menu, then to the conversation", real, async () => {
+     await fresh();
+     await tap(row(first));
+-    await tap('.topbar [aria-label="Menu"]');
++    await tap('.topbar [aria-label="菜单"]');
+     await reach({ sheet: "menu", layers: 1 }, "the menu");
+     await tap('.place[data-place="find"]');
+     await reach({ sheet: "find", layers: 2 }, "find, from the menu's tiles");
+@@ -280,7 +280,7 @@
+         await reach({ sheet: "model" }, "the model picker");
+ 
+         const radios = await inPage<{ label: string; checked: boolean }[]>(`
+-        const group = document.querySelector('[role="radiogroup"][aria-label="Context compression"]');
++        const group = document.querySelector('[role="radiogroup"][aria-label="上下文压缩"]');
+ 
+         return JSON.stringify([...group.querySelectorAll('[role="radio"]')].map((button) => ({
+             label: button.textContent.trim(),
+@@ -289,12 +289,12 @@
+     `);
+ 
+         assert.deepEqual(radios, [
+-            { label: "Off", checked: true },
++            { label: "关闭", checked: true },
+             { label: "Headroom", checked: false },
+             { label: "Billion-context", checked: false },
+         ]);
+         await page.evaluate(`
+-        [...document.querySelectorAll('[role="radiogroup"][aria-label="Context compression"] [role="radio"]')]
++        [...document.querySelectorAll('[role="radiogroup"][aria-label="上下文压缩"] [role="radio"]')]
+             .find((button) => button.textContent.trim() === "Headroom")
+             .click();
+     `);
+@@ -302,7 +302,7 @@
+             async () =>
+                 (await inPage<boolean>(`
+                 return JSON.stringify(document.querySelector(
+-                    '[role="radiogroup"][aria-label="Context compression"] [role="radio"][aria-checked="true"]'
++                    '[role="radiogroup"][aria-label="上下文压缩"] [role="radio"][aria-checked="true"]'
+                 )?.textContent.trim() === "Headroom");
+             `)) === true,
+             "Headroom selected",
+@@ -315,7 +315,7 @@
+         assert.equal(
+             await inPage<string>(`
+             return JSON.stringify(document.querySelector(
+-                '[role="radiogroup"][aria-label="Context compression"] [role="radio"][aria-checked="true"]'
++                '[role="radiogroup"][aria-label="上下文压缩"] [role="radio"][aria-checked="true"]'
+             )?.textContent.trim());
+         `),
+             "Headroom",
+@@ -326,9 +326,9 @@
+ test("a sheet closed with a tap takes its step back with it", real, async () => {
+     await fresh();
+     await tap(row(first));
+-    await tap('.topbar [aria-label="Menu"]');
++    await tap('.topbar [aria-label="菜单"]');
+     await reach({ sheet: "menu", layers: 1 }, "the menu");
+-    await tap('.sheet-head [aria-label="Close"]');
++    await tap('.sheet-head [aria-label="关闭"]');
+     await reach({ sheet: null, layers: 0 }, "the menu closed, and its step gone");
+     await back();
+     await reach({ path: "/" }, "back leaves for the list, not into the menu");
+@@ -337,7 +337,7 @@
+ test("a sheet dragged down far enough closes; a short drag springs back", real, async () => {
+     await fresh();
+     await tap(row(first));
+-    await tap('.topbar [aria-label="Menu"]');
++    await tap('.topbar [aria-label="菜单"]');
+     await reach({ sheet: "menu", layers: 1 }, "the menu");
+ 
+     const drag = (to: number) =>
+@@ -444,10 +444,10 @@
+         );
+     `);
+ 
+-    assert.ok(shown.includes("Back to sessions"), `the way back: ${shown}`);
+-    assert.ok(shown.includes("Files"), `Files: ${shown}`);
+-    assert.ok(shown.includes("Menu"), `the menu: ${shown}`);
+-    assert.ok(!shown.includes("Artifacts"), `no artifacts yet: ${shown}`);
++    assert.ok(shown.includes("返回会话列表"), `the way back: ${shown}`);
++    assert.ok(shown.includes("文件"), `Files: ${shown}`);
++    assert.ok(shown.includes("菜单"), `the menu: ${shown}`);
++    assert.ok(!shown.includes("成果"), `no artifacts yet: ${shown}`);
+ });
+ 
+ test("a session opened straight away gets the list under it at the first tap", real, async () => {
+@@ -473,7 +473,7 @@
+     await fresh();
+     await page.evaluate(`(await import("/files-panel.js")).setFilesOpen(false)`);
+     await tap(row(first));
+-    await tap('.topbar [aria-label="Files"]');
++    await tap('.topbar [aria-label="文件"]');
+     await reach({ files: true, layers: 1 }, "the Files tile");
+     // A path tapped in the Changes tab, as a line number there opens the file.
+     await page.evaluate(`
+@@ -499,7 +499,7 @@
+ test("Escape closes a sheet and takes its step back", real, async () => {
+     await fresh();
+     await tap(row(first));
+-    await tap('.topbar [aria-label="Menu"]');
++    await tap('.topbar [aria-label="菜单"]');
+     await reach({ sheet: "menu", layers: 1 }, "the menu");
+     await page.press("Escape");
+     await reach({ sheet: null, layers: 0, path: `/s/${first}` }, "closed, its step gone");
+@@ -508,7 +508,7 @@
+ test("forward onto a closed sheet does not open it again", real, async () => {
+     await fresh();
+     await tap(row(first));
+-    await tap('.topbar [aria-label="Menu"]');
++    await tap('.topbar [aria-label="菜单"]');
+     await reach({ sheet: "menu", layers: 1 }, "the menu");
+     await back();
+     await reach({ sheet: null, layers: 0 }, "closed by back");
+@@ -525,7 +525,7 @@
+     await page.setViewport({ width: 1440, height: 900, scale: 1, mobile: false });
+     await tap(`.sidebar .session-row[data-id="${first}"] .session`);
+     await reach({ path: `/s/${first}` }, "the session");
+-    await tap('.topbar [aria-label="Files"]');
++    await tap('.topbar [aria-label="文件"]');
+     await reach({ files: true }, "the Files tile, docked");
+     await tap('.ft-row[data-path$="/README.md"]');
+     await reach({ file: "README.md" }, "the file");
+@@ -542,7 +542,7 @@
+         await page.setViewport({ width: 1000, height: 800, scale: 1, mobile: false });
+         await tap(`.sidebar .session-row[data-id="${first}"] .session`);
+         await reach({ path: `/s/${first}` }, "the session");
+-        await tap('.topbar [aria-label="Files"]');
++        await tap('.topbar [aria-label="文件"]');
+         await reach({ files: true, layers: 1 }, "the tile, covering the conversation");
+         assert.equal(
+             await inPage<string>(
+@@ -705,7 +705,7 @@
+     await new Promise((resolve) => setTimeout(resolve, 400));
+     // Another session opens with no tap (as a reply's link or the server opens one), and the person taps Files at once.
+     await goTo(second);
+-    await page.click({ selector: '.topbar [aria-label="Files"]' });
++    await page.click({ selector: '.topbar [aria-label="文件"]' });
+     await reach({ path: `/s/${second}`, files: true, layers: 1 }, "Files, from the tap");
+     await back();
+     await reach({ files: false, layers: 0 }, "closed");
+@@ -755,7 +755,7 @@
+     await settle();
+     assert.equal(await widest(), 390, "a swipe's lean");
+     await reach({ path: `/s/${first}`, layers: 0 }, "still the session");
+-    await tap('.topbar [aria-label="Files"]');
++    await tap('.topbar [aria-label="文件"]');
+     await reach({ files: true }, "Files");
+     await settle();
+     assert.equal(await widest(), 390, "Files sliding in");
+@@ -851,7 +851,7 @@
+ 
+     for (const selector of [
+         ".topbar-back",
+-        '.topbar [aria-label="Files"]',
++        '.topbar [aria-label="文件"]',
+         ".composer-row .places-button",
+         ".composer-row .model-chip",
+         ".code-head .copy",
+@@ -920,7 +920,7 @@
+     async () => {
+         await fresh();
+         await tap(row(first));
+-        await tap('.topbar [aria-label="Files"]');
++        await tap('.topbar [aria-label="文件"]');
+         await reach({ files: true }, "Files");
+         await tap('.ft-row[data-path$="/README.md"]');
+         await reach({ file: "README.md" }, "the file");
+@@ -1059,7 +1059,7 @@
+         await until(async () => ![null, week].includes(await code()), "the owner's invite");
+         assert.equal(
+             await inPage<boolean>(
+-                `return JSON.stringify([...document.querySelectorAll(".sheet .label")].some((each) => each.textContent === "Expires after"))`,
++                `return JSON.stringify([...document.querySelectorAll(".sheet .label")].some((each) => each.textContent === "有效期"))`,
+             ),
+             false,
+         );
+@@ -1084,7 +1084,7 @@
+             };
+ 
+             requestAnimationFrame(watch);
+-            [...document.querySelectorAll(".sheet .segmented button")].find((each) => each.textContent.trim() === "View only").click();
++            [...document.querySelectorAll(".sheet .segmented button")].find((each) => each.textContent.trim() === "只读").click();
+         `);
+         await until(async () => ![null, steer].includes(await code()), "the view-only invite");
+         const frames = await inPage<[string, string | null][]>(
+@@ -1092,7 +1092,7 @@
+         );
+ 
+         assert.ok(
+-            !frames.some(([on, shown]) => on === "View only" && shown === steer),
++            !frames.some(([on, shown]) => on === "只读" && shown === steer),
+             "no frame shows the Steer invite under View only",
+         );
+         const viewOnly = await code();
+@@ -1125,7 +1125,7 @@
+         await until(
+             async () =>
+                 (await inPage<boolean>(
+-                    `return JSON.stringify(document.querySelector(".sheet")?.textContent.includes("Tap New invite to try again") === true)`,
++                    `return JSON.stringify(document.querySelector(".sheet")?.textContent.includes("点击“创建邀请”重试") === true)`,
+                 )) === true,
+             "the way to try again",
+         );
