@@ -142,6 +142,42 @@ test("0.13 composer source keys translate, preserve missing-key fallback, and re
   setUiLocales([]);
 });
 
+test("reviewed 0.13 coverage contract translates every approved key and falls back on disable", async () => {
+  const contract = JSON.parse(await readFile(new URL("./locale-coverage.json", import.meta.url), "utf8"));
+  const keys = new Set();
+  let templateCount = 0;
+  try {
+    for (const active of [false, true, false, true]) {
+      setUiLocales(active ? [pack] : []);
+      for (const group of contract.groups) {
+        for (const [key, translation] of Object.entries(group.strings)) {
+          assert.equal(strings[key], translation, `${group.file}: ${key}`);
+          assert.equal(t(key), active ? translation : key, `${group.file}: ${key}`);
+          keys.add(key);
+        }
+        for (const [key, translation] of Object.entries(group.templates)) {
+          assert.equal(templates[key], translation, key);
+          const number = "17 {{name}} / custom-model";
+          assert.equal(
+            t(key, { number }),
+            (active ? translation : key).replace("{{number}}", number),
+            "the PR number parameter is inserted verbatim, not recursively translated",
+          );
+        }
+      }
+      assert.equal(t("Unreviewed future UI label"), "Unreviewed future UI label");
+      const original = "Memory / 用户原文 / custom-model / secret-{{number}}";
+      assert.equal(t("Open {{title}}", { title: original }), (active ? "打开 " : "Open ") + original);
+      assert.equal(t("Server unreachable: ") + "RAW {{name}} ECONNRESET", (active ? "无法连接服务器：" : "Server unreachable: ") + "RAW {{name}} ECONNRESET");
+    }
+    for (const group of contract.groups) templateCount += Object.keys(group.templates).length;
+    assert.equal(keys.size, 64);
+    assert.equal(templateCount, 1);
+  } finally {
+    setUiLocales([]);
+  }
+});
+
 test("app notices translate while dynamic names, paths, and errors stay intact", () => {
   setUiLocales([pack]);
   assert.equal(

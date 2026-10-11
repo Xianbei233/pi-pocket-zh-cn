@@ -1,5 +1,16 @@
 # 验证记录
 
+## 未发布覆盖补充 — 2026-10-11，最终隔离验证
+
+- Owner 要求修复已确认的既有覆盖缺口；保留前置词典提交 `d5f0b44`。仅修改本词典仓库的词典、测试和文档。
+- `locale-coverage.json` / `coverage-contract.md` 提供 64 个精确固定 key、1 个 PR watch 命名参数模板及建议译文。最终框架提交 `77b1d928935b423524e2f53d077b850979da34ad`（父提交 `a11c0e6c11fc1db53c9221d13ea45268e2d3005e`）逐项接入，隔离工作树干净；独立核对确认 64/64 固定 key 与 1/1 模板存在对应调用点。未修改框架仓库。
+- 本词典加入上述 64/1 后为 746 条固定文案、92 条模板。用户正文、动态名称、模型 ID、密钥和原始浏览器错误保持原样；听写只翻译应用自有的固定错误说明。
+- 独立 `npm test` **19/19**；词典模块语法检查及 `git diff --check` 通过。新增回归遍历完整合同、启用/禁用与英语回退，并验证参数按原值插入一次（包含 `{{name}}` 等文本不递归处理）。
+- `node ui-extension-smoke.mjs /home/xianbei233/.pi-pocket/worktrees/resolve-pi-pocket-41-locale-conflicts-c8099a`：基于最终框架真实 loader、隔离数据目录及 scripted model，通过。验证扩展默认关闭、启用中文包、746 条固定文案与 92 条模板、命名参数、未知 key 英文回退、禁用后恢复英语。
+- `node ui-browser-smoke.mjs /home/xianbei233/.pi-pocket/worktrees/resolve-pi-pocket-41-locale-conflicts-c8099a`：最终框架真实 HTTP/Chromium 冒烟在 mobile 与 desktop 均通过。验证 composer 与已打开菜单实时启停中文、不重载文档；用户标题、草稿、模型 ID、会话路径不变；无横向溢出或浏览器 error 日志。
+- 框架会话报告其 `check`、lint、format 及 **469/469** 测试通过；该报告不替代本仓库上述 loader/browser 验证。
+- 未验证真实设备麦克风权限/收音以及系统级 Web Push；其余本轮批准清单均有显式源码调用。隔离测试关闭实例并清理临时数据。没有修改正式扩展、配置或数据库，没有部署、推送或公开发布；上线由 #15540 统一协调。
+
 ## 未发布 — 2026-10-11
 
 ### 上游与发布核查

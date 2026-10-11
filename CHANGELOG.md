@@ -2,7 +2,10 @@
 
 ## Unreleased
 
-- Add only three source-confirmed composer labels: listening, idle prompt, and queued-message prompt.
+- Extend the reviewed 0.13 coverage with 64 exact fixed labels for PiP, Memory, webhooks/watches, dictation, PiP compaction, shortcuts, and project trust; add one named-parameter PR watch notice.
+- Record exact English keys, translations, and source evidence in `locale-coverage.json`; independently verify all 64 fixed-key and one template call sites against final framework commit `77b1d928935b423524e2f53d077b850979da34ad`.
+- Add contract-wide enable/disable, English fallback, verbatim-parameter regression, final-host loader checks, and mobile/desktop Chromium language-switch smoke tests.
+- Add three source-confirmed composer labels: listening, idle prompt, and queued-message prompt.
 - Add fallback/disable regressions and an actual-pack browser smoke test using isolated Pocket data and Chromium profiles.
 - Reject hosts without the UI locale runtime before importing their app in the loader smoke test.
 - Record upstream 0.13.0 compatibility limits and PR #41 framework conflicts; no framework code or published version change.
