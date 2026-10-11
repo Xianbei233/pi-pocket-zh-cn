@@ -1,5 +1,12 @@
 # Changelog
 
+## Unreleased
+
+- Add only three source-confirmed composer labels: listening, idle prompt, and queued-message prompt.
+- Add fallback/disable regressions and an actual-pack browser smoke test using isolated Pocket data and Chromium profiles.
+- Reject hosts without the UI locale runtime before importing their app in the loader smoke test.
+- Record upstream 0.13.0 compatibility limits and PR #41 framework conflicts; no framework code or published version change.
+
 ## 0.3.0 — 2026-10-10
 
 - Extend Simplified Chinese coverage for app notices, model/plan/theme actions, archiving, and notification settings.

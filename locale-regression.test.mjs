@@ -122,6 +122,26 @@ test("screenshot regressions translate with the runtime fixture and revert on di
   setUiLocales([]);
 });
 
+test("0.13 composer source keys translate, preserve missing-key fallback, and revert", () => {
+  const entries = [
+    ["Listening…", "正在聆听…"],
+    ["Ask Pi anything…", "向 Pi 提问…"],
+    ["Queue a message for after this run…", "排队发送消息，待本次运行结束后处理…"],
+  ];
+  for (const active of [false, true, false]) {
+    setUiLocales(active ? [pack] : []);
+    for (const [key, translated] of entries) {
+      assert.equal(t(key), active ? translated : key);
+    }
+    assert.equal(t("A future UI label not in this pack"), "A future UI label not in this pack");
+    assert.equal(
+      t("Unknown {{model}}", { model: "Menu {{name}} / custom-model" }),
+      "Unknown Menu {{name}} / custom-model",
+    );
+  }
+  setUiLocales([]);
+});
+
 test("app notices translate while dynamic names, paths, and errors stay intact", () => {
   setUiLocales([pack]);
   assert.equal(

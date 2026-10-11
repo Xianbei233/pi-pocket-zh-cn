@@ -4,9 +4,9 @@
 
 ## 当前状态
 
-**需要主程序支持 `uiLocales` 接口；未经修改的上游 0.11.0 / 0.12.1 不能直接使用。** 通用接口已单独提交上游 [PR #41](https://github.com/TannerMidd/pi-pocket/pull/41)，不属于本仓库的安装器，也尚未随上游正式版本发布。基于 0.12.1 的实现见 [feat/ui-locales 分支](https://github.com/Xianbei233/pi-pocket/tree/feat/ui-locales)。已验证的 0.11 兼容源码见 [feat/ui-locales-v011 分支](https://github.com/Xianbei233/pi-pocket/tree/feat/ui-locales-v011)（提交 `945a1ca`）；不要把它当成最新上游版本，也不要覆盖正在运行的源码或数据。
+**需要主程序支持 `uiLocales` 接口；未经修改的上游 0.11.0 / 0.12.1 / 0.13.0 不能直接使用。** 2026-10-11 核查：最新上游发布为 0.13.0，`main` 与发布标签均为 `6067422`，原版没有 `uiLocales` 或 `web/i18n.js`。通用接口 [PR #41](https://github.com/TannerMidd/pi-pocket/pull/41) 仍开放，目标为上游 `main`，存在框架冲突；不属于本词典仓库的修复范围，也尚未随上游正式版本发布。基于 0.12.1 的 PR 实现见 [feat/ui-locales 分支](https://github.com/Xianbei233/pi-pocket/tree/feat/ui-locales)。旧 0.11 兼容源码见 [feat/ui-locales-v011 分支](https://github.com/Xianbei233/pi-pocket/tree/feat/ui-locales-v011)（`945a1ca`）；这些分支都不是最新上游，不应覆盖正在运行的源码或数据。关联、冲突文件与最小处理建议见 `UPSTREAM-AUDIT.md`。
 
-本包 0.3.0 包含 **679 条固定文案、91 条参数模板**，在带接口的 0.11.0 分支上经过实际部署验证。独立包测试 **17/17**；旧上游基线 `d01f763` 加通用接口的测试为 **250/250**，不是最新上游的测试结果。0.12 新界面未全部覆盖，缺失词条保留英文。详见 `VALIDATION.md`。
+已发布的 0.3.0 包含 **679 条固定文案、91 条参数模板**，原独立包测试为 **17/17**。当前未发布改动仅补消息输入框三条有源码证据的固定提示，工作树为 **682 条固定文案、91 条模板**，测试 **18/18**。在包含本地 `uiLocales` 接口的 0.13 集成版临时副本上，实际包 loader 和手机/桌面浏览器启停验证通过；不代表原版上游 0.13.0 可直接使用，也不代表新版界面全部翻译。缺失词条继续保留英文。详见 `VALIDATION.md`。
 
 项目源码与版本记录：[github.com/Xianbei233/pi-pocket-zh-cn](https://github.com/Xianbei233/pi-pocket-zh-cn)。
 
@@ -46,10 +46,11 @@ cp ./zh-cn-localization.ts ~/.pi-pocket/extensions/zh-cn-localization.ts
 
 需要 Node.js 22.19+；不需要安装依赖即可运行 `npm test`。这包含词典/模板测试、运行时测试夹具和旧补丁迁移保护测试，不等同于整个 Pi Pocket 的端到端验证。
 
-使用包含 `uiLocales` 的 Pi Pocket 源码及其已有依赖，可另行运行真实 loader 冒烟测试（使用临时数据、scripted model）：
+使用包含 `uiLocales` 的 **隔离 Pi Pocket 源码副本**及其独立依赖，可另行运行真实 loader 与浏览器冒烟测试（临时数据、scripted model、浏览器测试需 Chromium）。不要在正式或共享依赖目录安装依赖；原版上游缺少 runtime 时脚本明确拒绝，不尝试注入框架：
 
 ```bash
-node ui-extension-smoke.mjs /path/to/pi-pocket
+node ui-extension-smoke.mjs /path/to/isolated-pi-pocket
+node ui-browser-smoke.mjs /path/to/isolated-pi-pocket
 ```
 
 本项目采用 MIT 许可，见 `LICENSE`；Pi Pocket 衍生源码及测试夹具的归属见 `UPSTREAM-LICENSE`。GitHub Release 提供单文件语言包；不发布 npm 包。
