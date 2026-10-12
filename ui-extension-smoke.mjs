@@ -41,6 +41,13 @@ try {
             assert.equal(t(key, { number }), translation.replace('{{number}}', number));
         }
     }
+    const expanded = JSON.parse(await readFile(new URL('./locale-expansion.json', import.meta.url), 'utf8'));
+    const raw = 'Menu {{name}} <img> /custom-provider/model /path';
+    for (const [key, translation] of Object.entries(expanded.strings)) assert.equal(t(key), translation, key);
+    for (const [key, translation] of Object.entries(expanded.templates)) {
+        const params = Object.fromEntries([...key.matchAll(/{{([A-Za-z][A-Za-z0-9_]*)}}/g)].map((m) => [m[1], raw]));
+        assert.equal(t(key, params), translation.replace(/{{[A-Za-z][A-Za-z0-9_]*}}/g, () => raw), key);
+    }
     await app.setExtensionEnabled(owner(app), 'zh-cn-ui.ts', false);
     setUiLocales((await app.hello(owner(app))).server.uiLocales);
     assert.equal(t('Menu'), 'Menu');
@@ -52,7 +59,12 @@ try {
         for (const key of Object.keys(group.strings)) assert.equal(t(key), key);
         for (const key of Object.keys(group.templates)) assert.equal(t(key, { number: 17 }), key.replace('{{number}}', '17'));
     }
-    console.log(`PASS: actual zh-cn-ui pack (${Object.keys(packs[0].strings).length} strings), default off, enable, plain parameters, disable to English`);
+    for (const key of Object.keys(expanded.strings)) assert.equal(t(key), key);
+    for (const key of Object.keys(expanded.templates)) {
+        const params = Object.fromEntries([...key.matchAll(/{{([A-Za-z][A-Za-z0-9_]*)}}/g)].map((m) => [m[1], raw]));
+        assert.equal(t(key, params), key.replace(/{{[A-Za-z][A-Za-z0-9_]*}}/g, () => raw));
+    }
+    console.log(`PASS: actual zh-cn-ui pack (${Object.keys(packs[0].strings).length} strings / ${Object.keys(packs[0].templates).length} templates), default off, expanded contract, plain parameters, disable to English`);
 } finally {
     await app?.close();
     cleanUp();

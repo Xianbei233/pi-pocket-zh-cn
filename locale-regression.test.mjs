@@ -178,6 +178,32 @@ test("reviewed 0.13 coverage contract translates every approved key and falls ba
   }
 });
 
+test("expanded surface contract preserves every placeholder and supports live fallback", async () => {
+  const expanded = JSON.parse(await readFile(new URL("./locale-expansion.json", import.meta.url), "utf8"));
+  const value = "Menu {{name}} <img src=x onerror=alert(1)> $& /custom-provider/model /home/user 密钥";
+  try {
+    for (const enabled of [false, true, false, true]) {
+      setUiLocales(enabled ? [pack] : []);
+      for (const [key, translation] of Object.entries(expanded.strings)) {
+        assert.ok(expanded.sourceEvidence[key]?.length > 0, `source evidence: ${key}`);
+        assert.equal(strings[key], translation, key);
+        assert.equal(t(key), enabled ? translation : key, key);
+      }
+      for (const [key, translation] of Object.entries(expanded.templates)) {
+        assert.ok(expanded.sourceEvidence[key]?.length > 0, `source evidence: ${key}`);
+        assert.equal(templates[key], translation, key);
+        assert.deepEqual(placeholders(key), placeholders(translation), key);
+        const params = Object.fromEntries(placeholders(key).map((name) => [name, value]));
+        assert.equal(t(key, params), (enabled ? translation : key).replace(/{{[A-Za-z][A-Za-z0-9_]*}}/g, () => value), key);
+      }
+      assert.equal(t("Future unknown UI key"), "Future unknown UI key");
+      assert.equal(t("Future {{value}}", { value }), `Future ${value}`);
+    }
+  } finally {
+    setUiLocales([]);
+  }
+});
+
 test("app notices translate while dynamic names, paths, and errors stay intact", () => {
   setUiLocales([pack]);
   assert.equal(

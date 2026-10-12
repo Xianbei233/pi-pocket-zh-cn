@@ -1,5 +1,17 @@
 # 验证记录
 
+## 中文 UI 扩围 — 2026-10-12（本地候选，未部署）
+
+- 两树与生产源码/旧词典只读基线、具体类别/调用点、真实面板与残余见 `EXPANDED_AUDIT.md`；精确来源见 `locale-expansion.json`。配套框架最终提交 `20c826e0f622ba6a640be9e500e438e103e7240c`。
+- 词典 **1029 固定 / 202 模板**，相对 `88f2105` 新增 **283 / 110**，旧键译文不变；运行文件仍为兼容 `uiLocales` 的独立 `zh-cn-ui.ts`。
+- `timeout 60 node --test locale-regression.test.mjs`：**6/6**，包含原 65 项合同以及扩展合同的键/译文、来源证据、参数集合、一次插值、未知键回退与启停。
+- `timeout 90 node ui-extension-smoke.mjs ../locale-framework`：真实 loader 通过；默认关闭→启用真实包→完整扩展合同→禁用英文，1029/202。
+- `node audit-ui.mjs ../locale-framework`：1299 条直接/条件调用记录，47 条间接表达式，直接/条件调用缺键 **0**。间接表及 raw HTM 人工审计；该计数不是全 UI 覆盖率。
+- `timeout 110 node ui-panels-smoke.mjs ../locale-framework mobile` 和 `desktop`：均通过。16 类面板加启动器、模型空搜索和通知；细项见审计文档。临时 Memory 待审批正文/Webhook 指令与名称保持原样，移除确认取消；未执行真实 watch 或模型调用。
+- 框架：`timeout 90 npm run check`、改动路径的 `prettier --check`/`eslint`、逐文件 `node --check` 与两树 `git diff --check` 通过。`node --test test/i18n.test.ts test/i18n-notice.test.ts test/i18n-coverage.test.ts test/ui-locales.test.ts` **15/15**；`test/voice.test.ts test/i18n-ui.test.ts` **12/12**（后者较早针对 locale/听写修改执行）。均有 <=120 秒显式超时。
+- 没有执行 legacy 安装器；未修改助手侧扩展、依赖元数据、私有配置、生产、共享栈；未 fetch/build/refresh/部署/重启、全套测试或模型 E2E。正式 E2E 仍由 Owner 验收。
+- 检查日志：`/tmp/locale-{contracts,focused,loader,lint,format-check}.log`，`/tmp/locale-panels-{mobile,desktop}.log`。初期失败与修复记录见审计文档。手工演示实例已停止并清理自身临时数据。
+
 ## 未发布覆盖补充 — 2026-10-11，最终隔离验证
 
 - Owner 要求修复已确认的既有覆盖缺口；保留前置词典提交 `d5f0b44`。仅修改本词典仓库的词典、测试和文档。
