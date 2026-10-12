@@ -1,24 +1,20 @@
 # Changelog
 
-## Unreleased
+## 0.4.0 — 2026-10-12
 
-- Expand the paired UI coverage beyond the previous 65-key contract: 1042 fixed strings and 203 templates (+296/+111 from 88f2105), with existing translations preserved.
-- Add exact source evidence, a read-only call-site auditor, comprehensive placeholder/fallback regression, real-loader coverage and isolated mobile/desktop panel checks. A late read-only audit was compared with the actual feature commit; confirmed omissions were patched, while unverified candidates and residuals are explicit in `EXPANDED_AUDIT.md`. This is not a claim of complete localization.
-
-- Extend the reviewed 0.13 coverage with 64 exact fixed labels for PiP, Memory, webhooks/watches, dictation, PiP compaction, shortcuts, and project trust; add one named-parameter PR watch notice.
-- Record exact English keys, translations, and source evidence in `locale-coverage.json`; independently verify all 64 fixed-key and one template call sites against final framework commit `77b1d928935b423524e2f53d077b850979da34ad`.
-- Add contract-wide enable/disable, English fallback, verbatim-parameter regression, final-host loader checks, and mobile/desktop Chromium language-switch smoke tests.
-- Add three source-confirmed composer labels: listening, idle prompt, and queued-message prompt.
-- Add fallback/disable regressions and an actual-pack browser smoke test using isolated Pocket data and Chromium profiles.
-- Reject hosts without the UI locale runtime before importing their app in the loader smoke test.
-- Record upstream 0.13.0 compatibility limits and PR #41 framework conflicts; no framework code or published version change.
+- Publish the complete data-only Chinese UI pack: **1042 fixed strings and 203 templates**, up from 679/91 in 0.3.0.
+- Preserve the complete local-runtime dictionary rather than narrowing it to the still-open upstream replacement PR #64's smaller 930/190 example pack. The 112 additional fixed strings and 13 additional templates are valid `uiLocales` entries and preserve translations for features present in the local runtime.
+- Confirm compatibility with the data-only `uiLocales` extension runtime proposed in [pi-pocket#64](https://github.com/TannerMidd/pi-pocket/pull/64); this language pack alone does not add that host runtime. Original PR #41 is closed in favor of #64; neither PR is merged into an upstream release.
+- Refresh source audit evidence and run dictionary regressions, real loader checks, and isolated phone/desktop Chromium live enable/disable tests with a scripted model. No model requests are made.
+- Known English-only surfaces and untested real services remain documented in `README.md` and `EXPANDED_AUDIT.md`; this release does not claim complete localization.
 
 ## 0.3.0 — 2026-10-10
 
-- Extend Simplified Chinese coverage for app notices, model/plan/theme actions, archiving, and notification settings.
-- Keep dynamic session titles, user text, paths, commands, provider IDs, and raw errors unchanged.
-- Make locale regression tests self-contained; include an attributed test fixture of Pi Pocket's UI locale runtime.
-- Prepare the standalone drop-in project for public GitHub distribution.
+- Publish the independent `uiLocales` package and optional assistant-side extension.
+- Extend reviewed 0.13 coverage for app notices, model/plan/theme actions, archive and notification settings, PiP, Memory, webhooks/watches, dictation, compaction, shortcuts and project trust; add a named-parameter PR watch notice.
+- Add source evidence, enable/disable and English-fallback regressions, verbatim-parameter checks, actual-pack loader tests, and mobile/desktop Chromium language-switch smoke tests.
+- Reject hosts without the UI locale runtime before importing their app in the loader smoke test.
+- Record at the time that upstream 0.13.0 lacked the runtime and that the original framework PR #41 had conflicts; see historical `UPSTREAM-AUDIT.md` for the dated context.
 
 ## 0.2.0 — 2026-10-09
 
@@ -27,4 +23,4 @@
 
 ## 0.1.0 — 2026-10-09
 
-- Historical source-patch prototype. It is retained only for migration history and is not the installation method for current Pi Pocket versions.
+- Historical source-patch prototype, retained only for migration history; it is not the installation method for current Pi Pocket versions.

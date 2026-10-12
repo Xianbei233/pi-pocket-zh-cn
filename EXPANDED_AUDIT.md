@@ -76,5 +76,5 @@ Workflow `locale-surface-audit` 完成后投递了 sheets、core-web、server-ui
 
 - 只读初扫临时 Node 片段缺括号、若干精确 edit 文本未匹配：无写入副作用；已修正或放弃该次替换。
 - branch 既有 `{t("gone")}` 修复中曾短暂生成缺 `}`，立即被 `node --check` 检出并修正；从未在生产使用。
-- `ui-panels-smoke` 首轮 selector 未包含 dialog 自身 aria，第二轮打字焦点受面板动画影响，第三轮中文断言与既有词典用语不同；均为测试问题，修正 selector/直接 input 事件/预期文案后通过。日志 `/tmp/locale-panels-{mobile,desktop}.log` 为最终结果。
+- `ui-panels-smoke` 首轮 selector 未包含 dialog 自身 aria，第二轮打字焦点受面板动画影响，第三轮中文断言与既有词典用语不同；均为测试问题，修正 selector/直接 input 事件/预期文案后通过。手机、桌面 UI 面板逐项测试均已通过；当时测试日志留存于执行机临时目录，未纳入本项目发布资产。
 - 扩展合同曾与已有 `guard: 防护` 译文不一致，已保留原译文；新 key 的来源证据在刷新前被回归正确拒绝，已刷新证据。

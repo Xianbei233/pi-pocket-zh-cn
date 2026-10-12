@@ -1,5 +1,16 @@
 # 验证记录
 
+## 0.4.0 Release — 2026-10-12
+
+- 包版本从 `0.3.0` 升至 `0.4.0`；远端已核实 `v0.3.0` 为最新既有 release/tag，本次使用新 tag `v0.4.0`，不覆盖历史标签。
+- 发布词典 `zh-cn-ui.ts` SHA-256：`25f9be43df500695087c801bc81fed354b4d2d5fc571f787ae06ef18ad994cd9`；**1042 固定 / 203 模板**。与 PR #64 示例包逐键比较：本发行词典在其 930 固定/190 模板之上额外保留本地运行时所需的 **112 固定 / 13 模板**。当前扩围增量清单记录 302 条新增/复核固定键、111 个模板；其中存在旧键修正或重审，最终净增长为 296/111；两者共有键的译文完全一致。
+- `timeout 120 node --test *.test.mjs`：新增 release pack 自检后 **22/22**。
+- 使用 PR #64 的隔离工作树真实 loader：`node ui-extension-smoke.mjs ../locale-pr` 通过；1042/203 实际加载、默认关闭、启用、模板参数、不匹配英文回退、禁用恢复英文。并在独立兼容框架副本 `../locale-framework` 交叉验证同一包通过。
+- 对上述两个兼容隔离框架分别以 390×844 手机、1280×800 桌面运行 `node ui-panels-smoke.mjs <isolated-framework> mobile|desktop`，4 次全部通过。覆盖 14 个面板、启动器、子代理、PiP、固定命令参数、HTML-looking 查询、结构化通知实时启停、无页面 reload/横向溢出/console error；保留草稿、用户标题、模型 ID，未发生模型请求。
+- `node audit-ui.mjs ../locale-framework`：**1315** 条直接/条件 `t()` 调用记录、**49** 条动态表达式记录、直接/条件调用缺键 0；审计本身注明零缺键不等于全 UI 翻译。
+- 最终依赖审计显示 PR #64 的扩展 loader 每 locale 最大 512 KiB，最大 locale 数 16；完整语言包尺寸远低于该界限。独立 loader 与浏览器测试均使用隔离临时数据，不触碰正式数据。逐项审计日志留在验证环境，不包含在提交或 Release assets 中。
+- 兼容前置：PR #64 尚未合并/进入正式发行；仅安装本数据文件不能让原版主程序获得 locale runtime。#41 已关闭并由 #64 替代。未发 npm、未改上游 PR/生产、未测试真实模型、麦克风、Web Push/GitHub watch 或真实压缩后端。
+
 ## 中文 UI 扩围 — 2026-10-12（本地候选，未部署）
 
 - 两树与生产源码/旧词典只读基线、真实面板与残余见 `EXPANDED_AUDIT.md`；精确来源见 `locale-expansion.json`。框架范围 `5ef6ca3..e22939a36e87b18fbd9deade61d611e44e5f9849`，source fix `4f7fbce82dff8a20716e4570173f500efebea6d6`。

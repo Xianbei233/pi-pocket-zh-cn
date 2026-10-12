@@ -1,6 +1,12 @@
-# 上游与 PR 核查 — 2026-10-11
+# 上游与 PR 核查记录
 
-本记录只描述核查时的远程状态，不代表 PR 已解决、接口已随上游发布或词典已发布新版本。
+## 2026-10-12 发布时复核
+
+本次发布复核确认：词典仓库最新既有 Release/tag 为 `v0.3.0`，TannerMidd/pi-pocket 最新正式版为 `v0.13.1`。原 locale 框架 PR [#41](https://github.com/TannerMidd/pi-pocket/pull/41) 已 CLOSED，替代 PR [#64](https://github.com/TannerMidd/pi-pocket/pull/64) 为 OPEN，基于 upstream `main` `ed50991eb9c9b92e717f819073de36633bf83425`；尚无已合并的上游 locale runtime。本地新语言包仍须此 runtime，不要仅凭 PR open 宣称已进入正式版。当前 `v0.4.0` 是独立语言包 Release，保留本地 runtime 词条，不合并缩减成 PR 示例 pack。发布验证与残余见 `VALIDATION.md`。
+
+## 2026-10-11 历史核查（当时状态）
+
+以下内容固定记录 2026-10-11 的远程状态；其中 PR#41 状态、最新主程序版本、词条数和发行版本均已被 2026-10-12 复核更新，不代表当前状态。
 
 ## 已确认基线
 
