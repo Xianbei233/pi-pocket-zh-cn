@@ -2,15 +2,15 @@
 
 ## 中文 UI 扩围 — 2026-10-12（本地候选，未部署）
 
-- 两树与生产源码/旧词典只读基线、具体类别/调用点、真实面板与残余见 `EXPANDED_AUDIT.md`；精确来源见 `locale-expansion.json`。配套框架最终提交 `20c826e0f622ba6a640be9e500e438e103e7240c`。
-- 词典 **1029 固定 / 202 模板**，相对 `88f2105` 新增 **283 / 110**，旧键译文不变；运行文件仍为兼容 `uiLocales` 的独立 `zh-cn-ui.ts`。
+- 两树与生产源码/旧词典只读基线、真实面板与残余见 `EXPANDED_AUDIT.md`；精确来源见 `locale-expansion.json`。框架范围 `5ef6ca3..e22939a36e87b18fbd9deade61d611e44e5f9849`，source fix `4f7fbce82dff8a20716e4570173f500efebea6d6`。
+- 词典 **1042 固定 / 203 模板**，相对 `88f2105` 新增 **296 / 111**，旧键译文不变；运行文件仍为兼容 `uiLocales` 的独立 `zh-cn-ui.ts`。SHA-256：`25f9be43df500695087c801bc81fed354b4d2d5fc571f787ae06ef18ad994cd9`。
 - `timeout 60 node --test locale-regression.test.mjs`：**6/6**，包含原 65 项合同以及扩展合同的键/译文、来源证据、参数集合、一次插值、未知键回退与启停。
-- `timeout 90 node ui-extension-smoke.mjs ../locale-framework`：真实 loader 通过；默认关闭→启用真实包→完整扩展合同→禁用英文，1029/202。
-- `node audit-ui.mjs ../locale-framework`：1299 条直接/条件调用记录，47 条间接表达式，直接/条件调用缺键 **0**。间接表及 raw HTM 人工审计；该计数不是全 UI 覆盖率。
-- `timeout 110 node ui-panels-smoke.mjs ../locale-framework mobile` 和 `desktop`：均通过。16 类面板加启动器、模型空搜索和通知；细项见审计文档。临时 Memory 待审批正文/Webhook 指令与名称保持原样，移除确认取消；未执行真实 watch 或模型调用。
-- 框架：`timeout 90 npm run check`、改动路径的 `prettier --check`/`eslint`、逐文件 `node --check` 与两树 `git diff --check` 通过。`node --test test/i18n.test.ts test/i18n-notice.test.ts test/i18n-coverage.test.ts test/ui-locales.test.ts` **15/15**；`test/voice.test.ts test/i18n-ui.test.ts` **12/12**（后者较早针对 locale/听写修改执行）。均有 <=120 秒显式超时。
+- `timeout 90 node ui-extension-smoke.mjs ../locale-framework`：真实 loader 通过；默认关闭→启用真实包→完整扩展合同→禁用英文，1042/203。
+- `node audit-ui.mjs ../locale-framework`：1315 条直接/条件调用记录，49 条间接表达式，直接/条件调用缺键 **0**。间接表及 raw HTM 人工审计；该计数不是全 UI 覆盖率。
+- `timeout 110 node ui-panels-smoke.mjs ../locale-framework mobile` 和 `desktop`：初始扩围版均通过；晚到审计后最终版手机重跑通过，并额外覆盖 slash 参数提示即时中英切换。14 个面板、启动器、子代理看板、PiP、模型空搜索与通知；细项见审计文档。Memory 待审批正文/Webhook 指令与名称保持原样，移除确认取消；未执行真实 watch 或模型调用。
+- 框架最终修复后：`timeout 90 npm run check`、改动路径的 `prettier --check`/`eslint`、逐文件 `node --check` 与两树 `git diff --check` 通过。`node --test test/i18n.test.ts test/i18n-notice.test.ts test/i18n-coverage.test.ts test/ui-locales.test.ts` **15/15**；`test/voice.test.ts test/i18n-ui.test.ts` **12/12**（此前针对 locale/听写修改执行）。均有 <=120 秒显式超时。
 - 没有执行 legacy 安装器；未修改助手侧扩展、依赖元数据、私有配置、生产、共享栈；未 fetch/build/refresh/部署/重启、全套测试或模型 E2E。正式 E2E 仍由 Owner 验收。
-- 检查日志：`/tmp/locale-{contracts,focused,loader,lint,format-check}.log`，`/tmp/locale-panels-{mobile,desktop}.log`。初期失败与修复记录见审计文档。手工演示实例已停止并清理自身临时数据。
+- 检查日志：`/tmp/locale-{contracts,focused,loader,lint,format-check}.log`，`/tmp/locale-panels-{mobile,desktop}.log`，以及晚到审计最终手机运行 `/tmp/locale-late-audit-panels-mobile.log`。初期测试问题与修复记录见审计文档。手工演示实例已停止并清理自身临时数据。
 
 ## 未发布覆盖补充 — 2026-10-11，最终隔离验证
 

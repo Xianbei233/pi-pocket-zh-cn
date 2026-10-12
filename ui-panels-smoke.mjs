@@ -128,6 +128,14 @@ try {
     }
     console.log(`PASS ${size}: ${panel}; actual pack enable/disable, open panel, no reload/overflow, draft/title/model intact`);
   }
+  await evaluate(`const input=document.querySelector('.composer textarea');input.value='/';input.dispatchEvent(new Event('input',{bubbles:true}));return true;`);
+  for (const enabled of [true, false]) {
+    await app.setExtensionEnabled(owner(app), file, enabled);
+    await until(async () => await evaluate(`return document.querySelector('.commands')?.textContent.includes(${JSON.stringify(enabled ? '[保留内容]' : '[what to keep]')})`), 'localized slash-command argument hint', 12_000);
+    const commandText = await evaluate(`return document.querySelector('.commands')?.textContent ?? ''`);
+    assert.ok(commandText.includes('/compact'), 'built-in slash commands are suggested');
+  }
+  console.log(`PASS ${size}: built-in slash-command argument hints translate at render time`);
   await evaluate(`const {store,openSheet}=await import('/store.js');store.set({sheet:null,sheetTrail:[]});openSheet({type:'model',query:'Menu {{query}} <img>'});return true;`);
   for (const enabled of [true, false]) {
     await app.setExtensionEnabled(owner(app), file, enabled);

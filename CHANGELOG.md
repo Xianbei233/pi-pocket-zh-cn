@@ -2,8 +2,8 @@
 
 ## Unreleased
 
-- Expand the paired UI coverage beyond the previous 65-key contract: 1029 fixed strings and 202 templates (+283/+110 from 88f2105), with existing translations preserved.
-- Add exact source evidence, a read-only call-site auditor, comprehensive placeholder/fallback regression, real-loader coverage and isolated mobile/desktop panel checks. See `EXPANDED_AUDIT.md` for exercised panels and known residuals; this is not a claim of complete localization.
+- Expand the paired UI coverage beyond the previous 65-key contract: 1042 fixed strings and 203 templates (+296/+111 from 88f2105), with existing translations preserved.
+- Add exact source evidence, a read-only call-site auditor, comprehensive placeholder/fallback regression, real-loader coverage and isolated mobile/desktop panel checks. A late read-only audit was compared with the actual feature commit; confirmed omissions were patched, while unverified candidates and residuals are explicit in `EXPANDED_AUDIT.md`. This is not a claim of complete localization.
 
 - Extend the reviewed 0.13 coverage with 64 exact fixed labels for PiP, Memory, webhooks/watches, dictation, PiP compaction, shortcuts, and project trust; add one named-parameter PR watch notice.
 - Record exact English keys, translations, and source evidence in `locale-coverage.json`; independently verify all 64 fixed-key and one template call sites against final framework commit `77b1d928935b423524e2f53d077b850979da34ad`.

@@ -2,9 +2,10 @@
 
 ## 交付候选
 
-- 框架提交 `20c826e0f622ba6a640be9e500e438e103e7240c`，范围 `5ef6ca3bcdfcac1c5c7cac2152ac667058073ab6..20c826e0f622ba6a640be9e500e438e103e7240c`，提交后 clean。
-- 词典运行文件 SHA-256：`18d523347cb37e38ffdfa1e5d3479ef31c00985a8db7d7659b462aad18b47809`；1029 固定 / 202 模板，新增 283/110。
-- 并行只读工作流 `locale-surface-audit` 的报告在本次收尾时尚未收到；未计入已审阅/已验证证据。上述审计、改动与检查由主会话完成。后到报告需按此提交重新核对，不能覆盖更新后的状态。
+- 框架范围 `5ef6ca3bcdfcac1c5c7cac2152ac667058073ab6..e22939a36e87b18fbd9deade61d611e44e5f9849`，最终 HEAD `e22939a36e87b18fbd9deade61d611e44e5f9849`（source follow-up `4f7fbce82dff8a20716e4570173f500efebea6d6`，最后一条提交仅补交接文档）；分支 clean。
+- 收到只读 workflow `locale-surface-audit` 报告后，按 `20c826e0f622ba6a640be9e500e438e103e7240c` 后的实际源码复核并追加修复。
+- 词典运行文件 SHA-256：`25f9be43df500695087c801bc81fed354b4d2d5fc571f787ae06ef18ad994cd9`；**1042 固定 / 203 模板**，相对 746/92 基线新增 **296/111**。
+- 报告没有记载审计时的 HEAD，不能将整份旧行号表直接视为最终遗漏；逐项对照初始交付提交后，Memory、Webhook 确认、trust 风险说明、Pi-session 安全说明、扩展摘要等大部分所列项目已在当前源码中显式翻译。确认并修复的实际遗漏及仍保留项见“晚到审计复核”。
 
 ## 身份与边界
 
@@ -35,6 +36,21 @@
 | P1 子代理/预览 | `web/{subagents,subagents-board,peeks}.js` | 状态、计数、空态、搜索、审批按钮与 aria；PeekTile 增加 locale revision 属性使 memoized 卡片在启停时重绘 |
 | P1 对话/文件/辅助面板 | `web/{transcript,chat,diff,rich,share,browser-panel,ui}.js`, `web/sheets/{branch,folder,message,people,running,viewers}.js`, `web/sheets.js` | 固定片段、确认/占位符/tooltip/aria、版本和计数；修复既有 branch `gone` 字面 `{t(...)}` 漏 `$`；不翻译代码、HTML 制品、用户 Pin 内容或浏览器页面/console |
 | P1 服务端通知 | `src/server/{app,commands}.ts`, `web/{store,app}.js` | 保留原 message/日志及权限范围，增加可选 ui 元数据；扩展启停、审批规则、附件/文件发送失败、压缩开始/成功/中止与 PiP 压缩失败。参数不递归翻译，在 Preact 中以文本呈现 |
+
+## 晚到只读审计复核
+
+Workflow `locale-surface-audit` 完成后投递了 sheets、core-web、server-ui 三份只读表。报告未记录审计时的 HEAD；因此先以本轮框架交付提交 `20c826e0f622ba6a640be9e500e438e103e7240c` 为比较基线，再逐项检查当前文件，而不是把报告行号直接当作最终状态。其列出的 Memory 提案/批准、Webhook 签名与删除确认、trust 安全说明、终端 Pi 会话继续说明、模型默认设置、内置扩展摘要等多项在基线已由本轮显式调用覆盖。
+
+复核后确认并补齐：
+
+- `web/notify.js` 的应用自有推送权限拒绝/Service Worker 未启动错误，改为在客户端 `t()`，对应既有词条；不处理任何服务端/provider 原始错误。
+- composer 的内置 slash 命令参数提示 (`[what to keep]` 等) 使用词典；命令名和语法不改。用户自定义 prompt/skill 的描述与参数提示仍原样显示，不送入 `t()`。
+- 邀请码 aria-label 增加 `Invite code {{code}}` 模板；邀请码只作为一次性纯文本参数。
+- 扩展来源中的固定 `drop-in` 前缀翻译，路径保留原样。
+- 会话标题、chat/transcript/reaction 等人的固定 `New session`、`you`、`someone` 回退在显示时翻译；实际成员名保持原样。
+- 浏览器覆盖脚本新增 slash 参数提示的真实启停断言。最终手机 viewport 冒烟通过；旧版桌面矩阵在初始提交时通过，本次没有为这些小显示改动重跑桌面。
+
+**仍不得宣称完整覆盖。** 报告中登录/邀请页在认证前的 boot/UI、原始服务端/HTTP/OAuth/扩展异常、持久化活动文案和发给 Pi 的 note 内容继续按边界保留原文。报告还列出 composer 帮助/goal/watch 多状态、home/launcher 细项、运行与子代理动态状态、transcript/projection 状态和浏览器预设等候选；它们未由本次晚到报告逐项对照当前最终源码验完，不能纳入本轮“已覆盖”计数。后续若扩围，须从最后的框架 SHA 重新核对这些候选及键证据。
 
 ## 实测与限制
 

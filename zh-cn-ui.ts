@@ -1145,9 +1145,23 @@ const strings = {
   "Continued from Pi in the terminal": "已从终端中的 Pi 会话继续",
   "Press Esc twice": "连续按两次 Esc",
   "Esc stops": "按两次 Esc 可停止",
+  "[what to keep]": "[保留内容]",
+  "[handoff note]": "[交接说明]",
+  "[text]": "[文本]",
+  "[name]": "[名称]",
+  "[level]": "[级别]",
+  "[folder]": "[文件夹]",
+  "[title]": "[标题]",
+  "<when> <message>": "<时间> <消息>",
+  "<lesson>": "<经验内容>",
+  "<command>": "<命令>",
+  "[PR number or URL]": "[PR 编号或 URL]",
+  "[address]": "[地址]",
+  "[message]": "[消息]",
 };
 
 const templates = {
+  "Invite code {{code}}": "邀请码 {{code}}",
   "pinned by {{name}} {{when}}": "由 {{name}} 于 {{when}} 置顶",
   "{{count}} message waiting for Pi": "{{count}} 条消息等待 Pi 处理",
   "{{count}} messages waiting for Pi": "{{count}} 条消息等待 Pi 处理",

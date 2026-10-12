@@ -293,7 +293,20 @@
     "Fork, retry": "分叉或重试",
     "Continued from Pi in the terminal": "已从终端中的 Pi 会话继续",
     "Press Esc twice": "连续按两次 Esc",
-    "Esc stops": "按两次 Esc 可停止"
+    "Esc stops": "按两次 Esc 可停止",
+    "[what to keep]": "[保留内容]",
+    "[handoff note]": "[交接说明]",
+    "[text]": "[文本]",
+    "[name]": "[名称]",
+    "[level]": "[级别]",
+    "[folder]": "[文件夹]",
+    "[title]": "[标题]",
+    "<when> <message>": "<时间> <消息>",
+    "<lesson>": "<经验内容>",
+    "<command>": "<命令>",
+    "[PR number or URL]": "[PR 编号或 URL]",
+    "[address]": "[地址]",
+    "[message]": "[消息]"
   },
   "templates": {
     "{{count}} file": "{{count}} 个文件",
@@ -405,7 +418,8 @@
     "{{label}}, {{detail}}": "{{label}}：{{detail}}",
     "via {{source}}": "经由 {{source}}",
     "Open {{name}}": "打开 {{name}}",
-    "{{decision}} by {{name}}": "{{name}}：{{decision}}"
+    "{{decision}} by {{name}}": "{{name}}：{{decision}}",
+    "Invite code {{code}}": "邀请码 {{code}}"
   },
   "sourceEvidence": {
     "{{count}} file": [
@@ -1194,10 +1208,24 @@
         "type": "literal"
       }
     ],
+    "[what to keep]": [
+      {
+        "file": "web/commands.js",
+        "line": 231,
+        "type": "literal"
+      }
+    ],
     "Summarize older messages to free up context": [
       {
         "file": "web/commands.js",
         "line": 232,
+        "type": "literal"
+      }
+    ],
+    "[handoff note]": [
+      {
+        "file": "web/commands.js",
+        "line": 237,
         "type": "literal"
       }
     ],
@@ -1208,6 +1236,18 @@
         "type": "literal"
       }
     ],
+    "[text]": [
+      {
+        "file": "web/commands.js",
+        "line": 243,
+        "type": "literal"
+      },
+      {
+        "file": "web/commands.js",
+        "line": 362,
+        "type": "literal"
+      }
+    ],
     "Set what Pi is told with every message here": [
       {
         "file": "web/commands.js",
@@ -1215,10 +1255,59 @@
         "type": "literal"
       }
     ],
+    "[name]": [
+      {
+        "file": "web/commands.js",
+        "line": 249,
+        "type": "literal"
+      },
+      {
+        "file": "web/commands.js",
+        "line": 404,
+        "type": "literal"
+      },
+      {
+        "file": "web/commands.js",
+        "line": 441,
+        "type": "literal"
+      },
+      {
+        "file": "src/server/browser/viewport.ts",
+        "line": 65,
+        "type": "server source"
+      },
+      {
+        "file": "src/server/extensions/plan.ts",
+        "line": 247,
+        "type": "server source"
+      },
+      {
+        "file": "src/server/extensions/subagents.ts",
+        "line": 137,
+        "type": "server source"
+      },
+      {
+        "file": "src/server/hooks.ts",
+        "line": 55,
+        "type": "server source"
+      },
+      {
+        "file": "src/server/push.ts",
+        "line": 423,
+        "type": "server source"
+      }
+    ],
     "Switch the model": [
       {
         "file": "web/commands.js",
         "line": 249,
+        "type": "literal"
+      }
+    ],
+    "[level]": [
+      {
+        "file": "web/commands.js",
+        "line": 250,
         "type": "literal"
       }
     ],
@@ -1229,10 +1318,29 @@
         "type": "literal"
       }
     ],
+    "[folder]": [
+      {
+        "file": "web/commands.js",
+        "line": 253,
+        "type": "literal"
+      },
+      {
+        "file": "web/commands.js",
+        "line": 270,
+        "type": "literal"
+      }
+    ],
     "Start a new session in this folder": [
       {
         "file": "web/commands.js",
         "line": 254,
+        "type": "literal"
+      }
+    ],
+    "[title]": [
+      {
+        "file": "web/commands.js",
+        "line": 260,
         "type": "literal"
       }
     ],
@@ -1257,10 +1365,24 @@
         "type": "literal"
       }
     ],
+    "<when> <message>": [
+      {
+        "file": "web/commands.js",
+        "line": 297,
+        "type": "literal"
+      }
+    ],
     "Send Pi a message later or on repeat: in 2h …, tomorrow 9:00 …, every weekday 8:00 …": [
       {
         "file": "web/commands.js",
         "line": 299,
+        "type": "literal"
+      }
+    ],
+    "<lesson>": [
+      {
+        "file": "web/commands.js",
+        "line": 313,
         "type": "literal"
       }
     ],
@@ -1285,6 +1407,13 @@
         "type": "literal"
       }
     ],
+    "<command>": [
+      {
+        "file": "web/commands.js",
+        "line": 333,
+        "type": "literal"
+      }
+    ],
     "Pi keeps going until a check passes, such as npm test (5 checks at most)": [
       {
         "file": "web/commands.js",
@@ -1296,6 +1425,13 @@
       {
         "file": "web/commands.js",
         "line": 338,
+        "type": "literal"
+      }
+    ],
+    "[PR number or URL]": [
+      {
+        "file": "web/commands.js",
+        "line": 352,
         "type": "literal"
       }
     ],
@@ -1341,6 +1477,13 @@
         "type": "literal"
       }
     ],
+    "[address]": [
+      {
+        "file": "web/commands.js",
+        "line": 385,
+        "type": "literal"
+      }
+    ],
     "Open the browser Pi uses, or an address in it, such as localhost:5173": [
       {
         "file": "web/commands.js",
@@ -1366,6 +1509,13 @@
       {
         "file": "web/commands.js",
         "line": 405,
+        "type": "literal"
+      }
+    ],
+    "[message]": [
+      {
+        "file": "web/commands.js",
+        "line": 411,
         "type": "literal"
       }
     ],
@@ -1881,7 +2031,7 @@
       },
       {
         "file": "web/transcript.js",
-        "line": 1872,
+        "line": 1874,
         "type": "literal"
       },
       {
@@ -2090,12 +2240,12 @@
       },
       {
         "file": "web/transcript.js",
-        "line": 1436,
+        "line": 1438,
         "type": "literal"
       },
       {
         "file": "web/transcript.js",
-        "line": 1855,
+        "line": 1857,
         "type": "literal"
       },
       {
@@ -3429,7 +3579,7 @@
       },
       {
         "file": "web/transcript.js",
-        "line": 1534,
+        "line": 1536,
         "type": "literal"
       },
       {
@@ -4032,7 +4182,7 @@
       },
       {
         "file": "web/transcript.js",
-        "line": 1443,
+        "line": 1445,
         "type": "literal"
       },
       {
@@ -6056,6 +6206,13 @@
         "type": "literal"
       }
     ],
+    "Invite code {{code}}": [
+      {
+        "file": "web/sheets/people.js",
+        "line": 242,
+        "type": "literal"
+      }
+    ],
     "Also reachable at:": [
       {
         "file": "web/sheets/people.js",
@@ -6468,7 +6625,7 @@
       },
       {
         "file": "web/transcript.js",
-        "line": 1420,
+        "line": 1422,
         "type": "literal"
       },
       {
@@ -7462,14 +7619,14 @@
     "Fork, retry": [
       {
         "file": "web/transcript.js",
-        "line": 1313,
+        "line": 1315,
         "type": "literal"
       }
     ],
     "Continued from Pi in the terminal": [
       {
         "file": "web/transcript.js",
-        "line": 1362,
+        "line": 1364,
         "type": "literal"
       },
       {
@@ -7486,7 +7643,7 @@
     "Context compacted": [
       {
         "file": "web/transcript.js",
-        "line": 1376,
+        "line": 1378,
         "type": "literal"
       },
       {
@@ -7503,35 +7660,35 @@
     "in {{seconds}}s": [
       {
         "file": "web/transcript.js",
-        "line": 1879,
+        "line": 1881,
         "type": "literal"
       }
     ],
     "Attempt {{count}}, after: {{error}}": [
       {
         "file": "web/transcript.js",
-        "line": 1887,
+        "line": 1889,
         "type": "literal"
       }
     ],
     "Press Esc twice": [
       {
         "file": "web/transcript.js",
-        "line": 1896,
+        "line": 1898,
         "type": "literal"
       }
     ],
     "Esc stops": [
       {
         "file": "web/transcript.js",
-        "line": 1896,
+        "line": 1898,
         "type": "literal"
       }
     ],
     "Forked from another session": [
       {
         "file": "web/transcript.js",
-        "line": 2153,
+        "line": 2155,
         "type": "literal"
       }
     ],
