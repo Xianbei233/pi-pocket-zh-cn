@@ -17,7 +17,7 @@ const strings = unpack("strings");
 const templates = unpack("templates");
 const sha256 = createHash("sha256").update(source).digest("hex");
 
-test("0.4.0 contains the full local-runtime pack and stays within loader bounds", () => {
+test("0.5.0 contains the full local-runtime pack and stays within loader bounds", () => {
     const pkg = JSON.parse(readFileSync(new URL("./package.json", import.meta.url), "utf8"));
     const latest = JSON.parse(readFileSync(new URL("./locale-expansion.json", import.meta.url), "utf8"));
     const bytes = Buffer.byteLength(JSON.stringify({
@@ -28,14 +28,14 @@ test("0.4.0 contains the full local-runtime pack and stays within loader bounds"
         templates,
     }));
 
-    assert.equal(pkg.version, "0.4.0");
+    assert.equal(pkg.version, "0.5.0");
     assert.equal(pkg.private, true, "the project is not published to npm");
-    assert.equal(Object.keys(strings).length, 1042);
-    assert.equal(Object.keys(templates).length, 203);
+    assert.equal(Object.keys(strings).length, 1371);
+    assert.equal(Object.keys(templates).length, 274);
     assert.equal(Object.keys(latest.strings).length, 302);
     assert.equal(Object.keys(latest.templates).length, 111);
     assert.ok(bytes < 512 * 1024, `serialized locale size ${bytes} stays under host limit`);
-    assert.equal(sha256, "25f9be43df500695087c801bc81fed354b4d2d5fc571f787ae06ef18ad994cd9");
+    assert.equal(sha256, "00a5fd8f79d656aecc7ca4274591e829e0ed2e318ecb53724c39db64051a8820");
 });
 
 test("all template slots match and every key/translation is unique and well-formed", () => {

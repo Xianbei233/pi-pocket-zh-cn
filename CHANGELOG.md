@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.5.0 — 2026-10-21
+
+- Adapt the complete data-only Chinese UI pack to Pi Pocket 0.18.0: **1371 fixed strings and 274 templates**, up from 1042/203 in 0.4.0.
+- Keep every one of the 1042/203 published entries and every one of the 1356/273 entries in the complete 0.15 dictionary unchanged; 15 strings and 1 template added for the 0.18 extension hub.
+- Audit the 0.18 UI source: 1736 direct or conditional `t()` keys checked against the pack, none missing. This remains a call-site audit, not a claim that the whole interface is translated.
+- Verify with the real extension loader (1371/274 loaded, default off, enabled, disabled back to English) and with Chromium at 390×844 and 1280×800 (live enable/disable without reload, dynamic content intact, no overflow or console errors).
+- The framework PR [pi-pocket#64](https://github.com/TannerMidd/pi-pocket/pull/64) now carries only the generic `uiLocales` mechanism, explicit `t()` call sites, docs and a compact example pack; the complete dictionary stays in this repository.
+
+
 ## 0.4.0 — 2026-10-12
 
 - Publish the complete data-only Chinese UI pack: **1042 fixed strings and 203 templates**, up from 679/91 in 0.3.0.
