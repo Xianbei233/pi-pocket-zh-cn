@@ -1385,7 +1385,7 @@ const strings = {
   Uninstall: "卸载",
   Author: "作者",
   Needs: "要求",
-  Installed: "安装时间",
+  Installed: "已安装",
   Install: "安装",
   "Choose it in Appearance": "在外观中选择",
   "Getting its files": "正在获取文件",
@@ -1564,6 +1564,49 @@ const strings = {
   "Index settings and status": "索引设置与状态",
   "Choose an extension or theme to see its details.": "选择扩展或主题以查看详情。",
   "Technical details": "技术详情",
+  "Stop the run and send this now…": "停止当前运行并立即发送…",
+  "Always shown": "始终显示",
+  "Did not load": "未加载",
+  "The gallery revoked this version": "扩展库已撤销此版本",
+  "An update is ready": "有可用更新",
+  "Always on": "始终开启",
+  "It runs inside the server with your rights, in every session. Turn it on only if you trust its code.":
+    "它会在服务器内以你的权限、在所有会话中运行。只有信任其代码时才应开启。",
+  "Tools, checks, and app features. A change reaches every session at once and stays after restarts.":
+    "工具、检查与应用功能。更改会立即作用于所有会话，并在重启后保留。",
+  "Built in": "内置",
+  Yours: "你的",
+  "No built-in extensions or drop-ins match.": "没有匹配的内置扩展或外置扩展。",
+  "Make your own: put a": "自制扩展：将",
+  "module in": "模块放入",
+  "It stays off until you turn it on.": "在开启前保持关闭。",
+  Revoked: "已撤销",
+  On: "开启",
+  "Search installed": "搜索已安装",
+  "Read the index again": "重新读取索引",
+  "Extensions install turned off. Nothing runs until you turn it on.":
+    "扩展安装后保持关闭，开启前不会运行。",
+  "From the gallery": "来自扩展库",
+  "Nothing matches. Try other words, or All.": "没有匹配项。试试其他词，或选择“全部”。",
+  "Where these come from": "这些内容的来源",
+  "Choose one to see what it does.": "选择一项以查看其功能。",
+  "it runs in every session": "它在所有会话中运行",
+  "It arrives turned off, so nothing runs yet.": "安装后保持关闭，因此暂时不会运行。",
+  "Look it over": "查看内容",
+  "Read its code now, or once it is installed, have Pi review it in plan mode, where Pi cannot change anything.":
+    "现在阅读其代码；安装后也可以让 Pi 在计划模式下审查，此时 Pi 无法更改任何内容。",
+  "Read its code, or have Pi review it in plan mode, where Pi cannot change anything.":
+    "阅读其代码，或让 Pi 在计划模式下审查，此时 Pi 无法更改任何内容。",
+  "Everything it declares": "它声明的全部内容",
+  "Installed at": "安装时间",
+  "Those for": "针对",
+  "go to every session in it, worktrees too; the rest go everywhere.":
+    "的条目会进入其中每个会话（包括工作树）；其余条目全局生效。",
+  "Pi proposes one only when asked, or when sure it will help in many later sessions, and the owner approves; yours count at once.":
+    "Pi 只会在被要求时，或确信它能在今后许多会话中提供帮助时提出条目，并由所有者批准；你的条目立即生效。",
+  "It stays here as failed, and no longer needs you": "它会以失败状态保留在此，不再需要你处理",
+  "Subagents at work": "工作中的子代理",
+  "a page open": "有页面打开",
 };
 
 const templates = {
@@ -1887,6 +1930,14 @@ const templates = {
     "其 .agents/skills 中的技能（{{skills}}）也需要信任后才能使用。",
   "{{verb}} {{what}}. {{action}} to undo.": "{{verb}} {{what}}。{{action}}可撤销。",
   "Back to {{tab}}": "返回{{tab}}",
+  "Lancet Guard {{state}}": "Lancet Guard {{state}}",
+  "From {{module}}": "来自 {{module}}",
+  "Hidden by {{name}}": "被 {{name}} 隐藏",
+  "Move {{label}} earlier": "将{{label}}前移",
+  "Move {{label}} later": "将{{label}}后移",
+  "Show {{label}}": "显示{{label}}",
+  "Turn on {{title}}?": "开启 {{title}}？",
+  "{{count}} available": "{{count}} 个可用",
 };
 
 export default function createZhCnUiLocale() {

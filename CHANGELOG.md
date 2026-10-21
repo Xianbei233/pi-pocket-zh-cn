@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.6.0 — 2026-10-21
+
+- Adapt the complete pack to Pi Pocket 0.19.0: **1407 fixed strings and 282 templates**, up from 1371/274 in 0.5.0.
+- Keep every earlier entry; add 36 strings and 8 templates for 0.19's slot-based top bar, places, composer and status line, the redesigned extensions and gallery sheets, and the subagents board.
+- Split the overloaded `Installed`: the state and tab use `Installed` (已安装), while the install time uses `Installed at` (安装时间).
+- Audit the 0.19 UI source: 1731 direct or conditional `t()` keys checked, none missing. This remains a call-site audit, not a claim that the whole interface is translated.
+- Verify with the real extension loader (1407/282, default off, enable, disable back to English) and with Chromium at 390×844 and 1280×800.
+
 ## 0.5.0 — 2026-10-21
 
 - Adapt the complete data-only Chinese UI pack to Pi Pocket 0.18.0: **1371 fixed strings and 274 templates**, up from 1042/203 in 0.4.0.

@@ -1,5 +1,15 @@
 # 验证记录
 
+## 0.6.0 — 2026-10-21（0.19.0 适配，本地维护分支）
+
+- 上游基线：`TannerMidd/pi-pocket` `main@d2a3280b10c3f51610eacb13cdfa6e1ea4577b5b`（0.19.0）。框架 PR #64 本地合并提交 `5a576cc5d83ab13f32e1f094998ee0cb56d0a17d`（父提交 `b04986d`、`d2a3280`），保留公开历史。
+- 词典：**1407 固定 / 282 模板**，SHA-256 `89fbb6c19090169d9c33bff8d14af0cb9b20fb4d6fc254a3a563b7302208adea`。0.5.0 的 1371/274 及更早词条全部保留；新增 36/8。`Installed` 拆分为状态/标签（已安装）与 `Installed at`（安装时间）。
+- `npm test`：**22/22**。
+- 对框架 `web/**/*.js` 扫描直接与条件 `t()` 固定 key：**1731** 次调用记录，缺键 **0**；这是调用点覆盖，不代表全部界面已汉化。
+- 真实 loader（`ui-extension-smoke.mjs`）与真实 Chromium 手机/桌面（`ui-browser-smoke.mjs`）以 1407/282 实包验证启停、英文回退与动态内容保真，均通过。
+- 框架树：`npm run check`、`npm run lint`、`npm run format:check` 通过；完整测试 6 批 **404/404**，每批独立硬超时。
+- 未推送默认分支，未发 Release/npm，未部署，未修改生产数据或正式扩展。
+
 ## 0.5.0 — 2026-10-21（0.18.0 适配，本地维护分支）
 
 - 上游基线：`TannerMidd/pi-pocket` `main@885110867486733196b58915bfae500495133620`（0.18.0）。框架 PR #64 原 head 为 `bf404bb49be86e6ab0120cd6df2d740353369e7b`；本地以 merge 提交 `b04986dcc7e04c11231ce59d3696ef9f25d6d2e4`（父提交 `bf404bb`、`8851108`）重新适配，保留公开历史。
