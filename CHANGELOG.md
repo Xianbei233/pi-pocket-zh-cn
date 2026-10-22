@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.7.0 — 2026-10-22（本地候选，未发布）
+
+- Base the candidate on the deployed 0.6.0 pack (SHA-256 bbd6da93…b5087, 1407/282), keeping every entry.
+- Add 17 dynamic `t()` keys that the literal audit could not see: 0.19 slot labels, provider groups, built-in extension metadata, and the `unread` kind (1424/282).
+- Fix 12 values: `Installed`/`Installed at`, conversation vs session terminology, model-provider terminology, the `{{count}} coming` schedule count, and the extensions/memory copy.
+- Audit 1731 literal and conditional `t()` calls plus the 17 dynamic keys: none missing. Production still shows 20 UI strings through call sites with no `t()` (listed in the evidence report).
+- Verify with the real loader and Chromium at 390×844 and 1280×800, screenshots included; 27/27 dictionary tests and 404/404 framework tests pass.
+
 ## 0.6.0 — 2026-10-21
 
 - Adapt the complete pack to Pi Pocket 0.19.0: **1407 fixed strings and 282 templates**, up from 1371/274 in 0.5.0.

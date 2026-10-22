@@ -1,5 +1,18 @@
 # 验证记录
 
+## 0.7.0 — 2026-10-22（本地候选，未发布）
+
+- 基线：线上词典 `/home/xianbei233/.pi-pocket/extensions/zh-cn-ui.ts`，SHA-256 `bbd6da939f3e7171b40d6c7ca5045b4392a3445242b82cd0a4ad2d4eca1b5087`，1407/282；生产源码 `pi-pocket-production` HEAD `eae8ccf`（0.19.0）。
+- 候选：**1424 固定 / 282 模板**，相对线上 **+17 / 0**，修正 **12** 条值，删除 **0** 条；SHA-256 见 `release-package.test.mjs`。
+- 词典 `npm test`：**27/27**（原 22 项 + 4 项术语/动态 key 测试 + 1 项 baseline key 保留测试）。
+- 框架全量（把候选临时放入 PR 工作树 `docs/examples/zh-cn-ui.ts`，跑完恢复）：`npm run check`、`npm run lint`、`npm run format:check` 通过；6 批测试 **404/404**，每批独立硬超时。
+- 静态审计：生产 `web/**/*.js` 的直接/条件 `t()` **1731** 次，缺 key **0**；另发现字面量扫描看不到的动态 key **17** 条（`t(SLOTS[...].label)`、`t(item.label)`、提供方分组、内置扩展元数据），已补齐。
+- 失效条目：生产源码不再引用的旧 key **391** 条（完整列表 `evidence-output/0.7.0-analysis/stale-keys.json`）；按“旧词条不删除”保留。
+- 仍显示英文的源码缺口：静态扫描 26 条候选，其中 **20** 条是可见/辅助 UI 文案（如 `worktree`、`Pinned by`、`This extension is off.`、`Dictate`），**6** 条是技术/示例文本；运行时另有内置扩展元数据 **30** 行、OAuth 按钮 **5** 行、`Everywhere` 1 行、时间词 `now` 1 行。词典无法为没有 `t()` 的调用点提供翻译，需要框架补调用。
+- 真实渲染：`node evidence-070.mjs <production>` 与 `<pr64>` 均通过；手机 390×844、桌面 1280×800，6 个面板 + 输入框截图，`lang=zh-CN`、无横向溢出、无 `{{}}` 残留、无 U+FFFD；顶层槽位标签与提供方分组已显示中文，控制台无 error。截图与报告在 `evidence-output/0.7.0-*`。
+- 真实 loader：`node ui-extension-smoke.mjs <production>` 通过（默认关闭、启用、禁用回英文）。
+- 未推送、未发布 Release/npm、未修改生产、未合并 PR64。
+
 ## 0.6.0 — 2026-10-21（0.19.0 适配，本地维护分支）
 
 - 上游基线：`TannerMidd/pi-pocket` `main@d2a3280b10c3f51610eacb13cdfa6e1ea4577b5b`（0.19.0）。框架 PR #64 本地合并提交 `5a576cc5d83ab13f32e1f094998ee0cb56d0a17d`（父提交 `b04986d`、`d2a3280`），保留公开历史。

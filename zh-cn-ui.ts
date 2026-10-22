@@ -1,11 +1,11 @@
 /** Registers Simplified Chinese UI strings for Pi Pocket's explicit localization API. The owner can turn this module off to restore English. */
 import { defineExtension } from "@earendil-works/pi-durable";
 
-// Provenance: this pack keeps all 1042 strings and 203 templates from 0.4.0, and all
-// 1356 strings and 273 templates archived as the complete 0.15 dictionary (SHA-256
-// 7e828b15987fd6562d90d5b92a17239a795f586c0b7c16e0bea08272feb31390), unchanged.
-// Fifteen strings and one template added for the 0.18 extension hub bring it to
-// 1371 strings and 274 templates; no existing translation was replaced.
+// Provenance: 1042/203 from 0.4.0, and 1356/273 archived as the complete 0.15 dictionary
+// (SHA-256 7e828b15987fd6562d90d5b92a17239a795f586c0b7c16e0bea08272feb31390), all unchanged.
+// 0.18 added 15/1; 0.19 added 36/8. Version 0.7.0 takes the deployed 0.6.0 pack
+// (SHA-256 bbd6da939f3e7171b40d6c7ca5045b4392a3445242b82cd0a4ad2d4eca1b5087, 1407/282)
+// and adds 17 explicit 0.19 slot/metadata keys plus 12 value corrections; no entry was removed.
 
 const strings = {
   Select: "选择",
@@ -89,12 +89,12 @@ const strings = {
   "Billion-context automatically prepares its local proxy and cooperative tools when enabled.":
     "启用 Billion-context 后，会自动准备本地代理及配套工具。",
   "Browser: Pi opens, reads, clicks through, and screenshots web pages in a real Chromium on this machine, the same page the people in the conversation watch and use in the Browser panel.":
-    "浏览器：Pi 可在此设备的真实 Chromium 中打开、阅读、点击网页和截图；会话成员可在浏览器面板中查看并操作同一页面。",
+    "浏览器：Pi 可在此设备的真实 Chromium 中打开、阅读、点击网页和截图；对话成员可在浏览器面板中查看并操作同一页面。",
   "Done when: Pi keeps working until a session's check command passes, such as npm test, up to five checks.":
     "完成条件：Pi 持续工作，直到会话的检查命令（例如 npm test）通过，最多检查五次。",
   "Lancet Guard for Pi Pocket's tools.": "为 Pi Pocket 的工具提供 Lancet Guard 安全检查。",
   "Headroom automatically prepares its local proxy when enabled, then compresses selected conversations.":
-    "启用 Headroom 后，会自动准备本地代理，并压缩已选择的会话。",
+    "启用 Headroom 后，会自动准备本地代理，并压缩已选择的对话。",
   "Memory gives Pi short lessons that last across sessions, for a project or for everywhere: Pi proposes them with its memory tool, the owner approves them (under the call, or in Menu → Memory), and every later session in the same project gets them in its system prompt.":
     "记忆为 Pi 保留适用于本项目或所有项目的跨会话经验：Pi 通过 memory 工具提出建议，所有者在工具调用下方或菜单中的记忆面板批准后，后续相应会话会在系统提示中收到这些经验。",
   "PiP, the owner's assistant over every screen: it finds out what sessions are doing, starts and messages them, stops and archives them, schedules messages, follows runs until they end, watches the owner's GitHub repositories and pull requests and acts on what happens there, and can deny (never allow) calls waiting for approval.":
@@ -159,8 +159,8 @@ const strings = {
   "Start fresh: PiP forgets this conversation": "重新开始：PiP 不再记住此前的对话",
   "Start fresh? PiP forgets this conversation; you can still read it.":
     "重新开始？PiP 将不再记住此前的对话，但你仍可阅读历史记录。",
-  "Open as a conversation": "作为会话打开",
-  "Open as a conversation, with every step": "作为会话打开，查看每个步骤",
+  "Open as a conversation": "作为对话打开",
+  "Open as a conversation, with every step": "作为对话打开，查看每个步骤",
   "Close (Esc)": "关闭（Esc）",
   "PiP is working: open PiP": "PiP 正在工作：打开 PiP",
   "PiP has something new: open PiP": "PiP 有新消息：打开 PiP",
@@ -235,7 +235,7 @@ const strings = {
   "Pi has no sessions on this computer yet.": "此设备上尚无 Pi 会话。",
   "Search Pi's sessions: titles, folders, and messages": "搜索 Pi 会话的标题、文件夹和消息",
   "Continued from Pi. Pi has the conversation as Pi left it; nothing it did runs again.":
-    "已从 Pi 会话继续。Pi 会接收此前保留的上下文，不会重新执行之前的操作。",
+    "已从 Pi 对话继续。Pi 会接收此前保留的上下文，不会重新执行之前的操作。",
   "Pi session": "Pi 会话",
   "Reading the session": "正在读取会话",
   Folder: "文件夹",
@@ -683,7 +683,7 @@ const strings = {
   "Has changes": "有更改",
   "Back to Changes": "返回“更改”",
   "Back to the files": "返回文件列表",
-  "Back to the conversation": "返回会话",
+  "Back to the conversation": "返回对话",
   "Files and changes (Alt+E)": "文件与更改（Alt+E）",
   "Only the files Pi edited": "仅显示 Pi 修改的文件",
   "Changed files": "已更改的文件",
@@ -979,7 +979,7 @@ const strings = {
   "Pi proposes, changes nothing": "Pi 只提出方案，不做修改",
   "Unarchive session": "取消归档会话",
   "Archive session": "归档会话",
-  "sign in to model providers": "登录模型提供商",
+  "sign in to model providers": "登录模型提供方",
   dark: "深色",
   move: "移动",
   open: "打开",
@@ -1546,7 +1546,6 @@ const strings = {
   added: "已添加",
   removed: "已移除",
   unchanged: "未更改",
-  // 0.18 extension hub. "Installed" above remains the installation timestamp label.
   Discover: "发现",
   "Installed extensions": "已安装扩展",
   Updates: "更新",
@@ -1566,47 +1565,65 @@ const strings = {
   "Technical details": "技术详情",
   "Stop the run and send this now…": "停止当前运行并立即发送…",
   "Always shown": "始终显示",
-  "Did not load": "未加载",
+  "Did not load": "未能加载",
   "The gallery revoked this version": "扩展库已撤销此版本",
   "An update is ready": "有可用更新",
   "Always on": "始终开启",
   "It runs inside the server with your rights, in every session. Turn it on only if you trust its code.":
-    "它会在服务器内以你的权限、在所有会话中运行。只有信任其代码时才应开启。",
+    "它以你的权限在服务器内运行，并作用于所有会话。只有信任其代码时才开启。",
   "Tools, checks, and app features. A change reaches every session at once and stays after restarts.":
     "工具、检查与应用功能。更改会立即作用于所有会话，并在重启后保留。",
   "Built in": "内置",
   Yours: "你的",
   "No built-in extensions or drop-ins match.": "没有匹配的内置扩展或外置扩展。",
-  "Make your own: put a": "自制扩展：将",
+  "Make your own: put a": "自己制作：将",
   "module in": "模块放入",
-  "It stays off until you turn it on.": "在开启前保持关闭。",
+  "It stays off until you turn it on.": "在你开启前它保持关闭。",
   Revoked: "已撤销",
   On: "开启",
   "Search installed": "搜索已安装",
   "Read the index again": "重新读取索引",
   "Extensions install turned off. Nothing runs until you turn it on.":
-    "扩展安装后保持关闭，开启前不会运行。",
+    "扩展安装后保持关闭，启用前不会运行。",
   "From the gallery": "来自扩展库",
-  "Nothing matches. Try other words, or All.": "没有匹配项。试试其他词，或选择“全部”。",
+  "Nothing matches. Try other words, or All.": "没有匹配项。请尝试其他词语，或选择“全部”。",
   "Where these come from": "这些内容的来源",
   "Choose one to see what it does.": "选择一项以查看其功能。",
-  "it runs in every session": "它在所有会话中运行",
-  "It arrives turned off, so nothing runs yet.": "安装后保持关闭，因此暂时不会运行。",
-  "Look it over": "查看内容",
+  "it runs in every session": "它会在每个会话中运行",
+  "It arrives turned off, so nothing runs yet.": "它安装后默认关闭，因此尚未运行任何内容。",
+  "Look it over": "查看详情",
   "Read its code now, or once it is installed, have Pi review it in plan mode, where Pi cannot change anything.":
-    "现在阅读其代码；安装后也可以让 Pi 在计划模式下审查，此时 Pi 无法更改任何内容。",
+    "现在阅读其代码，或在安装后让 Pi 在计划模式中审查；在该模式下 Pi 无法更改任何内容。",
   "Read its code, or have Pi review it in plan mode, where Pi cannot change anything.":
-    "阅读其代码，或让 Pi 在计划模式下审查，此时 Pi 无法更改任何内容。",
+    "阅读其代码，或让 Pi 在计划模式中审查；在该模式下 Pi 无法更改任何内容。",
   "Everything it declares": "它声明的全部内容",
   "Installed at": "安装时间",
-  "Those for": "针对",
+  "Those for": "适用于",
   "go to every session in it, worktrees too; the rest go everywhere.":
-    "的条目会进入其中每个会话（包括工作树）；其余条目全局生效。",
+    "的经验会进入其中的每个会话（包括工作树）；其余则适用于所有位置。",
   "Pi proposes one only when asked, or when sure it will help in many later sessions, and the owner approves; yours count at once.":
-    "Pi 只会在被要求时，或确信它能在今后许多会话中提供帮助时提出条目，并由所有者批准；你的条目立即生效。",
-  "It stays here as failed, and no longer needs you": "它会以失败状态保留在此，不再需要你处理",
+    "Pi 只会在被要求时，或确信它能在之后许多会话中提供帮助时提出一条经验，并由所有者批准；你自己添加的经验会立即生效。",
+  "It stays here as failed, and no longer needs you": "它会以失败状态留在这里，不再需要你处理",
   "Subagents at work": "工作中的子代理",
   "a page open": "有页面打开",
+  "Top bar buttons": "顶栏按钮",
+  "Status line items": "状态栏项目",
+  "Message box buttons": "输入框按钮",
+  "Places (phones)": "快捷入口（手机）",
+  "Under Pi's answers": "Pi 回答下方",
+  Connection: "连接",
+  "People here": "在线成员",
+  Cache: "缓存",
+  "Lancet Guard": "Lancet Guard",
+  "Needs sign-in": "需要登录",
+  "Signed in": "已登录",
+  "Not configured": "未配置",
+  "Agent Teams": "代理团队",
+  "Claude subscription billing": "Claude 订阅计费",
+  "Lancet Guard is off (PI_POCKET_GUARD=off); tools run unguarded.":
+    "Lancet Guard 已关闭（PI_POCKET_GUARD=off）；工具将不经检查运行。",
+  "Extension gallery": "扩展库",
+  unread: "条未读",
 };
 
 const templates = {
@@ -1781,7 +1798,7 @@ const templates = {
   "New folder in {{folder}}": "在 {{folder}} 中新建文件夹",
   "{{path}} isn't there yet.": "{{path}} 尚不存在。",
   "Desktop · {{theme}}": "桌面 · {{theme}}",
-  "{{count}} coming": "{{count}} 项待执行",
+  "{{count}} coming": "{{count}} 项待发送",
   "Back to sessions, {{count}} waiting for you": "返回会话列表，{{count}} 项待你处理",
   "Image from {{host}}": "图片来源：{{host}}",
   "No model matches “{{query}}”.": "没有匹配的模型：“{{query}}”。",
@@ -1932,12 +1949,12 @@ const templates = {
   "Back to {{tab}}": "返回{{tab}}",
   "Lancet Guard {{state}}": "Lancet Guard {{state}}",
   "From {{module}}": "来自 {{module}}",
-  "Hidden by {{name}}": "被 {{name}} 隐藏",
-  "Move {{label}} earlier": "将{{label}}前移",
-  "Move {{label}} later": "将{{label}}后移",
-  "Show {{label}}": "显示{{label}}",
+  "Hidden by {{name}}": "由 {{name}} 隐藏",
+  "Move {{label}} earlier": "将 {{label}} 前移",
+  "Move {{label}} later": "将 {{label}} 后移",
+  "Show {{label}}": "显示 {{label}}",
   "Turn on {{title}}?": "开启 {{title}}？",
-  "{{count}} available": "{{count}} 个可用",
+  "{{count}} available": "{{count}} 项可用",
 };
 
 export default function createZhCnUiLocale() {
