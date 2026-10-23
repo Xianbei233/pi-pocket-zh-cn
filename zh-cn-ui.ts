@@ -1624,6 +1624,48 @@ const strings = {
     "Lancet Guard 已关闭（PI_POCKET_GUARD=off）；工具将不经检查运行。",
   "Extension gallery": "扩展库",
   unread: "条未读",
+  "Peeks: other sessions' live work beside this one": "会话速览：在其他会话旁显示其实时工作",
+  "Open it in the artifact viewer, at this version": "在成果查看器中打开此版本",
+  "No sessions match the filters.": "没有会话符合这些筛选条件。",
+  "Text size in pixels": "以像素为单位的字号",
+  "Fonts for": "字体：",
+  "Text font": "文本字体",
+  "Code font": "代码字体",
+  Ligatures: "连字",
+  "Theme's own": "主题自带",
+  "Font preview": "字体预览",
+  "Duplicate to change": "复制后修改",
+  "Auto follows your system's reduced-motion setting. Fluid adds springs, staggered entrances, and layout changes that morph":
+    "自动跟随系统的“减少动态效果”设置。“流畅”会增加弹簧、交错入场和形变布局变化。",
+  "Show in the file manager": "在文件管理器中显示",
+  "With none checked, subagents and linked sessions run on their session's model, and Pi cannot choose another. Check some, and they run only on those: on the session's model when it is checked, otherwise on a checked model that Pi chooses to suit the work. Pi cannot use any other.":
+    "未勾选任何模型时，子代理和关联会话使用其会话的模型，Pi 不能另选。勾选后，它们只使用勾选的模型：勾选了会话模型就用它，否则由 Pi 选择合适的已勾选模型。Pi 不能使用其他模型。",
+  "Message box: from extensions": "输入框：来自扩展",
+  "Publish it to anyone with a link": "发布给任何持有链接的人",
+  Share: "分享",
+  "Link copied. Anyone with it can open the page.":
+    "链接已复制。任何持有该链接的人都可以打开页面。",
+  " · follows the newest version": " · 跟随最新版本",
+  "stays until you end it": "持续到手动结束",
+  End: "结束",
+  "A published page needs no sign-in: anyone with its address can open it. It is the artifact's own sandboxed page, which still cannot reach this app or its cookies.":
+    "已发布的页面无需登录：任何持有其地址的人都可以打开。它是成果自带的沙箱页面，仍然无法访问此应用或其 Cookie。",
+  Shows: "显示内容",
+  Newest: "最新版本",
+  "Stays at this version, whatever you publish after.": "固定在此版本；之后发布的内容不会改变它。",
+  "Follows the artifact: every new version shows here too.": "跟随成果：每个新版本也会在此显示。",
+  Lasts: "有效期",
+  "Publishing…": "正在发布…",
+  "Publish link": "发布链接",
+  "Reading the links": "正在读取链接",
+  "No link yet. A published page stays out of the app, and out of everything an invite to this session gave.":
+    "尚无链接。已发布的页面不会出现在应用内，也不会出现在邀请此会话时授予的任何内容中。",
+  "Loading earlier messages": "正在加载更早的消息",
+  "Message time": "消息时间",
+  "Until I end it": "直到我结束",
+  "A day": "一天",
+  "A week": "一周",
+  "A month": "一个月",
 };
 
 const templates = {
@@ -1955,6 +1997,23 @@ const templates = {
   "Show {{label}}": "显示 {{label}}",
   "Turn on {{title}}?": "开启 {{title}}？",
   "{{count}} available": "{{count}} 项可用",
+  "Fonts for {{theme}}": "{{theme}} 的字体",
+  "{{name}} comes with the app: its fonts stay as they are.":
+    "{{name}} 随应用提供：其字体会保持不变。",
+  "The conversation's, in pixels: any from {{min}} to {{max}}":
+    "对话的字号（像素）：{{min}} 到 {{max}} 之间的任意值",
+  "Show in the file manager ({{modifier}}+click a path)":
+    "在文件管理器中显示（{{modifier}}+点击路径）",
+  "version {{version}}, pinned": "版本 {{version}}，已固定",
+  "ends {{when}}": "{{when}} 结束",
+  "End the link to {{title}}? Anyone who has it can no longer open it.":
+    "结束指向 {{title}} 的链接？持有该链接的人将无法再打开。",
+  "Share {{title}}": "分享 {{title}}",
+  "Version {{version}}": "版本 {{version}}",
+  "Links start at {{origin}}, so whoever opens one must be able to reach it: a tunnel's address works for anyone.":
+    "链接以 {{origin}} 开头，因此打开者必须能访问该地址：隧道地址对任何人都可用。",
+  "Show {{count}} earlier step": "显示更早的 {{count}} 个步骤",
+  "Show {{count}} earlier steps": "显示更早的 {{count}} 个步骤",
 };
 
 export default function createZhCnUiLocale() {

@@ -1,5 +1,18 @@
 # 验证记录
 
+## 0.8.0 — 2026-10-22（本地候选，未发布）
+
+- 框架：官方 `v0.20.0` = `687a81dcc18d5238f748e7a109f8b7e2d75f8eb5`，以普通 merge 并入 PR64；合并提交 `68ae4b18683de6319f7ea4a97963834e7c6fcebe`（父 `5a576cc`、`687a81d`）。12 个冲突文件全部解决，保留上游 0.20 功能与本地 locale 调用点。
+- 词典：**1461 固定 / 294 模板**，相对 0.7.0（1424/282）**+37 / +12**，删除 **0**；SHA-256 见 `release-package.test.mjs`。
+- 新增 key 覆盖：appearance 字体工具与字号、artifacts 分享（发布、有效期、版本固定、撤销、公开页说明）、会话筛选、消息时间、扩展快捷键、加载更早消息。
+- 16 项对照差异的处理：字体预览句子、`Emphasis.` 与代码示例保留英文作为字体样张；其余拆片按实际调用点合并为完整 `t()` key，最终新增 49 个 key（比 16 多出的部分是分享面板和字体工具的完整文案）。`Session tags` 浏览器模块没有 `t()`，列为源码缺口，不硬塞 key。
+- 未硬塞的源码缺口清单：`evidence-output/0.8.0/source-gaps.json`。字体样张 3 条；`session-tags` 浏览器模块 14 条（`Add a tag`、`Edit tags`、`Filter by tag`、`Search tags` 等，该模块无 `t()`）；内置标题 `Session tags` 1 条。
+- 词典 `npm test`：**28/28**。
+- 框架（合并后源码）：`npm run check`、`npm run lint`、`npm run format:check` 通过；完整测试 6 批 **538/538**（120/66/83/95/92/82）。
+- 真实 loader：`ui-extension-smoke.mjs` 以 1461/294 通过（默认关闭、启用、禁用回英文）。
+- 真实 Chromium：390×844 与 1280×800 的新字体工具、成果查看器与分享面板；`lang=zh-CN`、无横向溢出、无 `{{}}` 残留、无 U+FFFD、无 console error。证据在 `evidence-output/0.8.0-*`。
+- 未推送词典、未发布 Release/npm、未部署生产、未合并 PR、未批准 Docs workflow。
+
 ## 0.7.0 — 2026-10-22（本地候选，未发布）
 
 - 基线：线上词典 `/home/xianbei233/.pi-pocket/extensions/zh-cn-ui.ts`，SHA-256 `bbd6da939f3e7171b40d6c7ca5045b4392a3445242b82cd0a4ad2d4eca1b5087`，1407/282；生产源码 `pi-pocket-production` HEAD `eae8ccf`（0.19.0）。

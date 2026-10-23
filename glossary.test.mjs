@@ -136,3 +136,41 @@ test("dynamic 0.19 slot and metadata keys are present with source evidence", () 
         assert.equal(strings[key], value, key);
     }
 });
+
+test("0.20 fonts, artifact sharing and session UI use source-backed keys", () => {
+    // web/sheets/appearance.js: TextSize, FontTools.
+    const appearance = {
+        "Text size in pixels": "以像素为单位的字号",
+        "Fonts for {{theme}}": "{{theme}} 的字体",
+        Ligatures: "连字",
+        "Font preview": "字体预览",
+        "Duplicate to change": "复制后修改",
+        "The conversation's, in pixels: any from {{min}} to {{max}}":
+            "对话的字号（像素）：{{min}} 到 {{max}} 之间的任意值",
+    };
+    // web/sheets/viewers.js: ArtifactShareSheet and ShareRow.
+    const sharing = {
+        "Publish it to anyone with a link": "发布给任何持有链接的人",
+        Share: "分享",
+        Lasts: "有效期",
+        "Publish link": "发布链接",
+        "No link yet. A published page stays out of the app, and out of everything an invite to this session gave.":
+            "尚无链接。已发布的页面不会出现在应用内，也不会出现在邀请此会话时授予的任何内容中。",
+        "Until I end it": "直到我结束",
+        "A day": "一天",
+        "A week": "一周",
+        "A month": "一个月",
+    };
+    // web/sheets/file.js, web/sheets/sessions.js, web/sheets/shortcuts.js, web/transcript.js.
+    const elsewhere = {
+        "Show in the file manager": "在文件管理器中显示",
+        "No sessions match the filters.": "没有会话符合这些筛选条件。",
+        "Message box: from extensions": "输入框：来自扩展",
+        "Message time": "消息时间",
+        "Loading earlier messages": "正在加载更早的消息",
+    };
+
+    for (const [key, value] of Object.entries({ ...appearance, ...sharing, ...elsewhere })) {
+        assert.equal(strings[key] ?? templates[key], value, key);
+    }
+});

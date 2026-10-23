@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.8.0 — 2026-10-22（本地候选，未发布；需 Pocket 0.20）
+
+- Base on 0.7.0 (1424/282) and add 49 keys for Pocket 0.20.0: 37 strings and 12 templates, to 1461/294. No entry is removed.
+- Cover the 0.20 font tools (text size in pixels, font family, ligatures, preview, duplicate), artifact sharing (publish, lifetime, version pin, revoke, public-page notice), the session filter, message time, extension shortcuts and earlier-message loading.
+- The sixteen raw items from the 0.20 comparison become full `t()` keys where the source has one call site: the font preview sentence and code sample stay English as the specimen; the session-tags browser module has no `t()` and stays a framework gap.
+- Merge PR64 to v0.20.0 as `68ae4b1` (parents `5a576cc` and `687a81d`), resolving 12 conflicts without dropping locale call sites or upstream features.
+- Verify with 28 dictionary tests, 538 framework tests, check/lint/format, the real loader, and phone/desktop Chromium screenshots.
+
 ## 0.7.0 — 2026-10-22（本地候选，未发布）
 
 - Base the candidate on the deployed 0.6.0 pack (SHA-256 bbd6da93…b5087, 1407/282), keeping every entry.
