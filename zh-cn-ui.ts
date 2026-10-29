@@ -6,6 +6,12 @@ import { defineExtension } from "@earendil-works/pi-durable";
 // 0.18 added 15/1; 0.19 added 36/8. Version 0.7.0 takes the deployed 0.6.0 pack
 // (SHA-256 bbd6da939f3e7171b40d6c7ca5045b4392a3445242b82cd0a4ad2d4eca1b5087, 1407/282)
 // and adds 17 explicit 0.19 slot/metadata keys plus 12 value corrections; no entry was removed.
+// 0.8.0-live union (base snapshot SHA-256 40b541c157b5e9e1bdfc1a466107b1b77e506691fdfb688be1b365c020c408a8):
+// keeps every candidate key and value, plus the 13 strings and 1 template that only the
+// deployed 0.20.0 pack carried, and the composer Interrupt tooltip; 1475 strings and 295 templates.
+// 0.9.0 adapts the accepted 0.8.0-live baseline above (SHA-256 15a0ceb3…e965e, 1475 strings
+// and 295 templates, all kept unchanged) to Pi Pocket 0.25.0 (c65cf995…587d). It adds
+// 51 source-backed strings and 1 template; no baseline key or value was changed or removed.
 
 const strings = {
   Select: "选择",
@@ -1666,6 +1672,87 @@ const strings = {
   "A day": "一天",
   "A week": "一周",
   "A month": "一个月",
+  "System Sans": "系统无衬线字体",
+  "System Mono": "系统等宽字体",
+  "The quick brown fox jumps over the lazy dog.": "敏捷的棕色狐狸跃过那只懒狗。",
+  "Emphasis.": "强调。",
+  "follows the newest version": "跟随最新版本",
+  "This version could not be loaded.": "无法加载此版本。",
+  "Move to queue": "移到队列",
+  "Steer now": "立即引导",
+  "Interrupt?": "中断？",
+  "Stops the run right now (also its tool call) and clears the queue, then sends it":
+    "立即停止本次运行（包括其工具调用）并清空队列，然后发送此消息",
+  "Stops the run right now (also its tool call), then sends this one. The other queued messages stay queued":
+    "立即停止本次运行（包括其工具调用），然后发送这条消息。队列中的其他消息仍留在队列中",
+  Interrupt: "中断",
+  "Tap again to stop the run and send this now. The other queued messages stay queued":
+    "再次点击即可停止运行并立即发送此消息。队列中的其他消息仍留在队列中",
+  Fluid: "流体",
+  Title: "标题",
+  Question: "问题",
+  "Read it as the person you send it to: leave out keys, private data, and what they do not need.":
+    "以收件人的视角通读：省略密钥、私人数据以及对方不需要的内容。",
+  Delete: "删除",
+  "Create link": "创建链接",
+  "What they see": "对方看到的内容",
+  "Copy message": "复制消息",
+  "Anyone with the link could write this, and a name is what they typed.":
+    "任何持有链接的人都能写入这些内容，名称也只是对方输入的。",
+  "Open a session to see its questions.": "打开会话以查看其问题。",
+  "No questions yet. Under one of Pi's answers, tap Ask someone, and Pi writes a question that someone outside this chat can answer.":
+    "还没有问题。在 Pi 的某条回答下点击“询问他人”，Pi 会写一个聊天之外的人也能回答的问题。",
+  "No tags yet.": "还没有标签。",
+  "No tags match.": "没有匹配的标签。",
+  "No tags yet. Hold a session's row, or select sessions, and choose Edit tags.":
+    "还没有标签。长按会话行，或选择多个会话，然后选择“编辑标签”。",
+  "Check now": "立即检查",
+  "Checking…": "正在检查…",
+  "To look for new versions, or install them by themselves, open Menu → Extensions → Installed → Pi Pocket updates.":
+    "要查找新版本或让它们自动安装，请打开“菜单 → 扩展 → 已安装 → Pi Pocket 更新”。",
+  "Pi Pocket does not try this version again by itself. The button below does.":
+    "Pi Pocket 不会自行再次尝试此版本；可以点击下方按钮。",
+  "On GitHub": "在 GitHub 上",
+  "Release notes": "发布说明",
+  "Pi Pocket cannot update itself now": "Pi Pocket 现在无法自行更新",
+  "Before you update": "更新之前",
+  "This takes longer than usual. If the new version does not start in 5 minutes, the launcher goes back to the version before. The server's log says why.":
+    "这比平时耗时更长。如果新版本在 5 分钟内没有启动，启动器会退回上一个版本。服务器日志会说明原因。",
+  "Back to main session": "返回主会话",
+  "This extension is off.": "此扩展已关闭。",
+  Decline: "拒绝",
+  "Retry now": "立即重试",
+  "It printed nothing.": "它没有输出任何内容。",
+  "The end of its output:": "其输出的结尾：",
+  "What you type goes to the page or tool that asked. Pi does not see it.":
+    "你输入的内容会发送给请求它的页面或工具，Pi 看不到。",
+  "(done)": "（完成）",
+  "What it adds": "它提供的内容",
+  "No tools, commands, pages, or hooks.": "没有工具、命令、页面或钩子。",
+  "Open Appearance": "打开外观",
+  "When PiP's older messages become a short summary: as a session's do, or sooner, once PiP is idle above a limit, which keeps each reply cheaper.":
+    "PiP 的较早消息何时压缩为简短摘要：与会话相同，或在 PiP 空闲且超过上限时更早进行，从而让每次回复更省。",
+  "Notifications on this device…": "此设备的通知…",
+  "(you)": "（你）",
+  "Wait for a limit": "等待限额",
+  "When a provider's limit stops a run, it waits for the limit to clear, up to this long, and goes on by itself. A limit that clears later makes it fail with the time.":
+    "当提供方的限额中断运行时，会等待限额解除，最长等待这么久，然后自动继续。若限额更晚才解除，运行会失败并显示该时间。",
+  "Open the sign-in link Pi Pocket printed when it started, or an invite from a signed-in device. You can also paste the link, the token, or an invite code here.":
+    "打开 Pi Pocket 启动时打印的登录链接，或已登录设备发出的邀请。也可以在此粘贴链接、令牌或邀请码。",
+  Settings: "设置",
+  "The link stays open for": "链接保持开放",
+  "Questions for people outside this chat": "供聊天之外的人回答的问题",
+  "Questions for others": "给其他人的问题",
+  "Question copied.": "已复制问题。",
+  "Off in Pi Pocket: bash, background, write, and edit calls run unchecked here. Pi itself still uses it.":
+    "已在 Pi Pocket 中关闭：bash、background、write 和 edit 调用在此不经检查运行。Pi 自身仍会使用它。",
+  "Checks bash, background, write, and edit calls. Risky ones wait for someone in the session to allow them.":
+    "检查 bash、background、write 和 edit 调用。高风险调用会等待会话中的成员批准。",
+  "pages for anyone with a link, no sign-in": "任何持有链接的人都可打开的页面，无需登录",
+  "a service for other modules": "供其他模块使用的服务",
+  Answered: "已回答",
+  Declined: "已拒绝",
+  "Waiting for a usage limit": "等待用量限制解除",
 };
 
 const templates = {
@@ -2014,6 +2101,8 @@ const templates = {
     "链接以 {{origin}} 开头，因此打开者必须能访问该地址：隧道地址对任何人都可用。",
   "Show {{count}} earlier step": "显示更早的 {{count}} 个步骤",
   "Show {{count}} earlier steps": "显示更早的 {{count}} 个步骤",
+  "Fonts for {{name}}": "{{name}} 的字体",
+  "Waiting for {{who}} to answer.": "正在等待 {{who}} 回答。",
 };
 
 export default function createZhCnUiLocale() {

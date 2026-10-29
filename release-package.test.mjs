@@ -28,14 +28,14 @@ test("0.8.0 contains the full local-runtime pack and stays within loader bounds"
         templates,
     }));
 
-    assert.equal(pkg.version, "0.8.0");
+    assert.equal(pkg.version, "0.9.0");
     assert.equal(pkg.private, true, "the project is not published to npm");
-    assert.equal(Object.keys(strings).length, 1461);
-    assert.equal(Object.keys(templates).length, 294);
+    assert.equal(Object.keys(strings).length, 1526);
+    assert.equal(Object.keys(templates).length, 296);
     assert.equal(Object.keys(latest.strings).length, 302);
     assert.equal(Object.keys(latest.templates).length, 111);
     assert.ok(bytes < 512 * 1024, `serialized locale size ${bytes} stays under host limit`);
-    assert.equal(sha256, "356cc8119d39977880192064bde515198a6f18945cb22cd825337f895131e51c");
+    assert.equal(sha256, "ba5bb7aa69d48887c5d729c6a2502c427033e18ffd226d04bfc6c76eedfd10f0");
 });
 
 test("all template slots match and every key/translation is unique and well-formed", () => {

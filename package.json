@@ -1,6 +1,6 @@
 {
   "name": "pi-pocket-zh-cn",
-  "version": "0.8.0",
+  "version": "0.9.0",
   "private": true,
   "type": "module",
   "description": "Pi Pocket independent Simplified Chinese UI locale and optional assistant-side extension",
