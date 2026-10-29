@@ -1,5 +1,53 @@
 # 验证记录
 
+## 0.8.0 — 2026-10-22（本地候选，未发布）
+
+- 框架：官方 `v0.20.0` = `687a81dcc18d5238f748e7a109f8b7e2d75f8eb5`，以普通 merge 并入 PR64；合并提交 `68ae4b18683de6319f7ea4a97963834e7c6fcebe`（父 `5a576cc`、`687a81d`）。12 个冲突文件全部解决，保留上游 0.20 功能与本地 locale 调用点。
+- 词典：**1461 固定 / 294 模板**，相对 0.7.0（1424/282）**+37 / +12**，删除 **0**；SHA-256 见 `release-package.test.mjs`。
+- 新增 key 覆盖：appearance 字体工具与字号、artifacts 分享（发布、有效期、版本固定、撤销、公开页说明）、会话筛选、消息时间、扩展快捷键、加载更早消息。
+- 16 项对照差异的处理：字体预览句子、`Emphasis.` 与代码示例保留英文作为字体样张；其余拆片按实际调用点合并为完整 `t()` key，最终新增 49 个 key（比 16 多出的部分是分享面板和字体工具的完整文案）。`Session tags` 浏览器模块没有 `t()`，列为源码缺口，不硬塞 key。
+- 未硬塞的源码缺口清单：`evidence-output/0.8.0/source-gaps.json`。字体样张 3 条；`session-tags` 浏览器模块 14 条（`Add a tag`、`Edit tags`、`Filter by tag`、`Search tags` 等，该模块无 `t()`）；内置标题 `Session tags` 1 条。
+- 词典 `npm test`：**28/28**。
+- 框架（合并后源码）：`npm run check`、`npm run lint`、`npm run format:check` 通过；完整测试 6 批 **538/538**（120/66/83/95/92/82）。
+- 真实 loader：`ui-extension-smoke.mjs` 以 1461/294 通过（默认关闭、启用、禁用回英文）。
+- 真实 Chromium：390×844 与 1280×800 的新字体工具、成果查看器与分享面板；`lang=zh-CN`、无横向溢出、无 `{{}}` 残留、无 U+FFFD、无 console error。证据在 `evidence-output/0.8.0-*`。
+- 未推送词典、未发布 Release/npm、未部署生产、未合并 PR、未批准 Docs workflow。
+
+## 0.7.0 — 2026-10-22（本地候选，未发布）
+
+- 基线：线上词典 `/home/xianbei233/.pi-pocket/extensions/zh-cn-ui.ts`，SHA-256 `bbd6da939f3e7171b40d6c7ca5045b4392a3445242b82cd0a4ad2d4eca1b5087`，1407/282；生产源码 `pi-pocket-production` HEAD `eae8ccf`（0.19.0）。
+- 候选：**1424 固定 / 282 模板**，相对线上 **+17 / 0**，修正 **12** 条值，删除 **0** 条；SHA-256 见 `release-package.test.mjs`。
+- 词典 `npm test`：**27/27**（原 22 项 + 4 项术语/动态 key 测试 + 1 项 baseline key 保留测试）。
+- 框架全量（把候选临时放入 PR 工作树 `docs/examples/zh-cn-ui.ts`，跑完恢复）：`npm run check`、`npm run lint`、`npm run format:check` 通过；6 批测试 **404/404**，每批独立硬超时。
+- 静态审计：生产 `web/**/*.js` 的直接/条件 `t()` **1731** 次，缺 key **0**；另发现字面量扫描看不到的动态 key **17** 条（`t(SLOTS[...].label)`、`t(item.label)`、提供方分组、内置扩展元数据），已补齐。
+- 失效条目：生产源码不再引用的旧 key **391** 条（完整列表 `evidence-output/0.7.0-analysis/stale-keys.json`）；按“旧词条不删除”保留。
+- 仍显示英文的源码缺口：静态扫描 26 条候选，其中 **20** 条是可见/辅助 UI 文案（如 `worktree`、`Pinned by`、`This extension is off.`、`Dictate`），**6** 条是技术/示例文本；运行时另有内置扩展元数据 **30** 行、OAuth 按钮 **5** 行、`Everywhere` 1 行、时间词 `now` 1 行。词典无法为没有 `t()` 的调用点提供翻译，需要框架补调用。
+- 真实渲染：`node evidence-070.mjs <production>` 与 `<pr64>` 均通过；手机 390×844、桌面 1280×800，6 个面板 + 输入框截图，`lang=zh-CN`、无横向溢出、无 `{{}}` 残留、无 U+FFFD；顶层槽位标签与提供方分组已显示中文，控制台无 error。截图与报告在 `evidence-output/0.7.0-*`。
+- 真实 loader：`node ui-extension-smoke.mjs <production>` 通过（默认关闭、启用、禁用回英文）。
+- 未推送、未发布 Release/npm、未修改生产、未合并 PR64。
+
+## 0.6.0 — 2026-10-21（0.19.0 适配，本地维护分支）
+
+- 上游基线：`TannerMidd/pi-pocket` `main@d2a3280b10c3f51610eacb13cdfa6e1ea4577b5b`（0.19.0）。框架 PR #64 本地合并提交 `5a576cc5d83ab13f32e1f094998ee0cb56d0a17d`（父提交 `b04986d`、`d2a3280`），保留公开历史。
+- 词典：**1407 固定 / 282 模板**，SHA-256 `89fbb6c19090169d9c33bff8d14af0cb9b20fb4d6fc254a3a563b7302208adea`。0.5.0 的 1371/274 及更早词条全部保留；新增 36/8。`Installed` 拆分为状态/标签（已安装）与 `Installed at`（安装时间）。
+- `npm test`：**22/22**。
+- 对框架 `web/**/*.js` 扫描直接与条件 `t()` 固定 key：**1731** 次调用记录，缺键 **0**；这是调用点覆盖，不代表全部界面已汉化。
+- 真实 loader（`ui-extension-smoke.mjs`）与真实 Chromium 手机/桌面（`ui-browser-smoke.mjs`）以 1407/282 实包验证启停、英文回退与动态内容保真，均通过。
+- 框架树：`npm run check`、`npm run lint`、`npm run format:check` 通过；完整测试 6 批 **404/404**，每批独立硬超时。
+- 未推送默认分支，未发 Release/npm，未部署，未修改生产数据或正式扩展。
+
+## 0.5.0 — 2026-10-21（0.18.0 适配，本地维护分支）
+
+- 上游基线：`TannerMidd/pi-pocket` `main@885110867486733196b58915bfae500495133620`（0.18.0）。框架 PR #64 原 head 为 `bf404bb49be86e6ab0120cd6df2d740353369e7b`；本地以 merge 提交 `b04986dcc7e04c11231ce59d3696ef9f25d6d2e4`（父提交 `bf404bb`、`8851108`）重新适配，保留公开历史。
+- 词典：**1371 固定 / 274 模板**，SHA-256 `00a5fd8f79d656aecc7ca4274591e829e0ed2e318ecb53724c39db64051a8820`。旧词条逐键核对零丢失：0.4.0 的 1042/203 全部保留；0.15 归档的 1356/273（SHA-256 `7e828b15987fd6562d90d5b92a17239a795f586c0b7c16e0bea08272feb31390`）全部保留；新增 15/1，无旧译文改动。
+- `npm test`：**22/22**，覆盖词典结构、模板占位、扩展/覆盖契约键、动态参数原样插入、未知键英文回退、启停以及 legacy 补丁回归。
+- 对框架源码 `web/**/*.js` 扫描直接与条件 `t()` 固定 key：**1736** 次调用记录，缺键 **0**。该数字是调用点覆盖，不代表全部界面已汉化。
+- `node ui-extension-smoke.mjs <框架合并树>`：真实 loader 默认无语言包 → 启用真实词典（1371/274）→ 禁用恢复英语，通过。
+- `node ui-browser-smoke.mjs <框架合并树>`：真实 Chromium 390×844 与 1280×800，已打开菜单/输入框实时启停、不重载文档，用户标题、草稿、模型 ID 原样保留，无横向溢出或 console error，手机与桌面均通过。
+- 框架树 `npm run check`、`npm run lint`、`npm run format:check` 通过；完整测试按 6 批运行 **366/366**，每批独立硬超时与日志。
+- 未推送默认分支，未发 Release/npm，未部署，未修改生产数据或正式扩展。框架 PR head 的推送因当前 GitHub OAuth 凭据缺少 `workflow` scope 被拒绝，未绕过该限制；详见该会话的交付说明。
+
+
 ## 0.4.0 Release — 2026-10-12
 
 - 包版本从 `0.3.0` 升至 `0.4.0`；远端已核实 `v0.3.0` 为最新既有 release/tag，本次使用新 tag `v0.4.0`，不覆盖历史标签。
