@@ -2,7 +2,11 @@
 
 此仓库提供 Pi Pocket 的**数据型 `uiLocales` 中文语言包**，以及一个彼此独立、可选的助手侧扩展。界面包不会修改 Pi Pocket 源码，也不会自动翻译任意页面内容。
 
-## 当前版本与兼容要求
+## 语义键版
+
+支持语义键 `web.uiLocales` 的 Pi Pocket 构建请使用独立模块 [`zh-cn-semantic.ts`](zh-cn-semantic.ts)。见[兼容要求、安装与启停](SEMANTIC-PACK.md)。下面的 `0.9.0` 说明仅适用于旧的 `zh-cn-ui.ts`；不要同时启用两者。
+
+## 旧版本与兼容要求
 
 最新语言包版本为 **0.9.0**，包含 **1,526 条固定文案和 296 个参数模板**（SHA-256 `ba5bb7aa…`），按 Pi Pocket **0.25 / 0.26** 补齐，并与 0.26.0 线上部署的字典逐字节一致。它保留 0.8.0 的全部词条：相对仓库上一版 0.8.0（1,461/294）净增 **65 条固定文案和 2 个模板**，删除 **0**；另有 7 条字符串与 1 个模板统一为「对话」措辞，逐条见 [RECONCILIATION.md](RECONCILIATION.md)。0.9.0 只在主程序升级到 0.25.0 或更新并使用对应 locale 框架后生效。完整词典只在本仓库维护，框架提案 [TannerMidd/pi-pocket#64](https://github.com/TannerMidd/pi-pocket/pull/64) 仅携带通用 locale 机制和一个精简示例包。
 
