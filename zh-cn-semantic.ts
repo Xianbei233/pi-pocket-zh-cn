@@ -4,6 +4,22 @@ export const pack = {
     id: "zh-CN",
     label: "简体中文",
     messages: {
+        "web.sheets.menu.menu-sheet.text.paused": "{count} 条已暂停",
+        "builtin.module.pocket-relay.title": "消息中继",
+        "builtin.module.pocket-relay.summary":
+            "消息中继把聊天服务或订阅源接到会话，包括 Discord、Telegram、Slack、Matrix、RSS、HTTP API 或外置扩展的连接器。收到的消息作为隔离数据传入会话，Pi 使用 relay_reply 工具回复。",
+        "builtin.module.session-cleanup.title": "会话清理",
+        "builtin.module.session-cleanup.summary":
+            "所有者可以清理已归档会话的工作树，也可以从 Pi Pocket 移除这些会话及其应用文件。",
+        "web.transcript.report.verb.stalled": "已停滞",
+        "web.transcript.report.verb.stopped": "已停止",
+        "web.running-board.filter.paused": "已暂停",
+        "extensions.background.command-quiet": "命令无输出多久后停止（分钟）",
+        "extensions.background.command-quiet.detail":
+            "Pi 的 Bash 命令在这段时间内没有输出，系统就停止该命令及其启动的进程，并把已有输出交给 Pi。持续输出的命令（例如长时间构建）会继续运行，Pi 也可以为单次调用指定超时。0 表示不限。",
+        "extensions.background.task-quiet": "后台任务无输出多久后停止（分钟）",
+        "extensions.background.task-quiet.detail":
+            "后台任务也遵循此规则，但 Pi 可以在启动时指定单独的限制（例如服务器任务设为 0）。系统停止任务时会通知 Pi。0 表示不限。",
         "web.composer.release0281.interrupt-hint":
             "立即停止本轮运行（包括工具调用），然后发送此消息。队列中的消息仍保留在队列中",
         "web.composer.release0281.stop-title":
