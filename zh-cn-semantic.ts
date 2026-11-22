@@ -4,6 +4,9 @@ export const pack = {
     id: "zh-CN",
     label: "简体中文",
     messages: {
+        "web.composer.quote-count.remove": "移除引用",
+        "web.composer.quote-count.clear": "清除引用",
+        "web.transcript.limit.waiting-to-retry": "等待重试",
         "web.running-board.paused": "已暂停",
         "web.running-board.schedule.paused": "暂停于 {time}。恢复之前不会发送。",
         "web.running-board.schedule.paused-short": "已暂停",
@@ -9675,7 +9678,7 @@ export const pack = {
         "builtin.module.codemode.summary":
             "Codemode 让代理编写 JavaScript 调用其他工具，以批量执行独立调用、串联调用或在输出进入模型前过滤大量结果。",
         "builtin.module.memory.summary":
-            "记忆让 Pi 提出跨会话保留的项目或全局经验。所有者在工具调用下方或菜单中的记忆页批准后，后续会话的系统提示会包含这些经验。",
+            "记忆让 Pi 保存简短经验，适用于同项目、所有会话，或仅当前会话。Pi 通过记忆工具提出建议，所有者在工具调用下方或菜单的记忆页批准后，适用会话的系统提示会包含这些经验。",
         "builtin.module.pip.summary":
             "PiP 是跨界面的个人助手。它查看会话状态、创建和发送任务、停止或归档会话、设置定时消息、跟进任务、监视 GitHub 仓库和拉取请求，并可拒绝等待审批的调用，但不能批准。",
         "builtin.module.triggers.summary":
