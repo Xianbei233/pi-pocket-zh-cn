@@ -4,6 +4,13 @@ export const pack = {
     id: "zh-CN",
     label: "简体中文",
     messages: {
+        "web.running-board.paused": "已暂停",
+        "web.running-board.schedule.paused": "暂停于 {time}。恢复之前不会发送。",
+        "web.running-board.schedule.paused-short": "已暂停",
+        "web.running-board.pause": "暂停",
+        "web.running-board.resume": "恢复",
+        "web.sheets.schedules.next-when": "下次：{when}",
+        "web.sheets.schedules.next-in": "距离下次运行",
         "web.sheets.menu.menu-sheet.text.paused": "{count} 条已暂停",
         "builtin.module.pocket-relay.title": "消息中继",
         "builtin.module.pocket-relay.summary":
